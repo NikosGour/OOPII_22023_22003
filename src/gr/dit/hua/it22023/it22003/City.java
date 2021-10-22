@@ -1,11 +1,11 @@
 package gr.dit.hua.it22023.it22003;
+import gr.dit.hua.it22023.it22003.Utils;
 
 public class City
 {
- 
-    
+
     /**
-     *     Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
+     *      Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
      *      index 0: Cafe                (Y M)<br>
      *      index 1: Sea                 (Y M E)<br>
      *      index 2: Museum              (M E)<br>
@@ -28,6 +28,8 @@ public class City
     
     private static final double TRAVEL_AGENCY_LAT = 37.9838;
     private static final double TRAVEL_AGENCY_LON = 23.7275;
+
+    private static final int MAX_DISTANCE = 15317;
     //endregion
     
     
@@ -42,8 +44,6 @@ public class City
 
 
     //region Getter & Setters
-    
-    
     public double[] getFeatures()
     {
         return features;
@@ -64,4 +64,17 @@ public class City
         this.normalized_features = normalized_features;
     }
     //endregion
+
+
+    private void normalize_features() {
+          for (int i = 0; i < 7; i++) {
+                normalized_features[i] = (this.features[i] - MIN_TERM) / (MAX_TERM - MIN_TERM);
+          }
+
+          normalized_features[7] = (this.features[7] - MIN_TEMPERATURE) / (MAX_TEMPERATURE - MIN_TEMPERATURE);
+
+          normalized_features[8] = this.features[8]/100;
+
+          normalized_features[9] = (Utils.distance(TRAVEL_AGENCY_LAT, TRAVEL_AGENCY_LON, this.latitude, this.longitude) / MAX_DISTANCE);
+    }
 }
