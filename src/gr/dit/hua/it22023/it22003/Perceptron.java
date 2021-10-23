@@ -12,7 +12,7 @@ public abstract class Perceptron implements PerceptronTraveller {
       
       }
       
-      public static void setWeights()
+      public static void set_weights()
       {
       
       }
@@ -51,4 +51,18 @@ public abstract class Perceptron implements PerceptronTraveller {
             return input > 10;
       }
       
+      //region Getters & Setters
+      
+      public double[] getInputs()
+      {
+            return inputs;
+      }
+      
+      public void setInputs(double[] inputs)
+      {
+            this.inputs = inputs;
+      }
+      
+      
+      //endregion
 }

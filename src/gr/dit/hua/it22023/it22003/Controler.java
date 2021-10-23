@@ -59,13 +59,13 @@ public class Controler
         Perceptron Traveler = null;
 
         if (age >= 16 && age < 25) {
-            PerceptronYoungTraveller.setWeights();
+            PerceptronYoungTraveller.set_weights();
             Traveler = new PerceptronYoungTraveller();
         } else if (age >= 25 && age < 60) {
-            PerceptronMiddleTraveller.setWeights();
+            PerceptronMiddleTraveller.set_weights();
             Traveler = new PerceptronMiddleTraveller();
         } else if (age >= 60 && age < 115) {
-            PerceptronElderTraveller.setWeights();
+            PerceptronElderTraveller.set_weights();
             Traveler = new PerceptronElderTraveller();
         }
 
