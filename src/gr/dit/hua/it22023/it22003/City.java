@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class City
 {
-
+    private String cityName;
     /**
      *      Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
      *      index 0: Cafe                (Y M)<br>
@@ -49,10 +49,11 @@ public class City
     private static final double MAX_DISTANCE = 15325.599430089682;
     //endregion
     
-
     
-    City(double[] features , double latitude , double longitude)
+    City(String cityName , double[] features , double latitude , double longitude)
     {
+        this.cityName = cityName;
+        
         if (features.length == 9)
         {
             for (int i = 0; i < 7; i++)
@@ -62,19 +63,35 @@ public class City
             this.features[7] = features[7];
             this.features[8] = features[8];
             
-            this.features[9] = Utils.distance(TRAVEL_AGENCY_LAT, TRAVEL_AGENCY_LON, latitude, longitude);
+            this.features[9] = Utils.distance(TRAVEL_AGENCY_LAT , TRAVEL_AGENCY_LON , latitude , longitude);
         }
+        
         System.out.println(Arrays.toString(this.features));
         
         this.normalize_features();
-    
+        
         System.out.println(Arrays.toString(normalized_features));
+        
+        
+        Utils.cities.add(this);
         
     }
     
    
     
     //region Getter & Setters
+    
+    
+    public String getCityName()
+    {
+        return cityName;
+    }
+    
+    public void setCityName(String cityName)
+    {
+        this.cityName = cityName;
+    }
+    
     public double[] getFeatures()
     {
         return features;

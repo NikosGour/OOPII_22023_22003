@@ -5,6 +5,4 @@ import java.util.ArrayList;
 public interface PerceptronTraveller {
 
       ArrayList<String> recommend();
-      
-
 }

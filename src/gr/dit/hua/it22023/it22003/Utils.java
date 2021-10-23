@@ -1,6 +1,11 @@
 package gr.dit.hua.it22023.it22003;
 
+import java.util.ArrayList;
+
 public final class Utils {
+      
+      public static final ArrayList<City> cities = new ArrayList<City>();
+      
       public static double distance(double lat1, double lon1, double lat2, double lon2) {
             final double KILOMETER_MULT = 1.609344;
             if ((lat1 == lat2) && (lon1 == lon2)) {
