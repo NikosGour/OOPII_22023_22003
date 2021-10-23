@@ -4,7 +4,15 @@ public class Controler
 {
     public static void main(String[] args)
     {
+        program_initialization();
+        PerceptronElderTraveller x = new PerceptronElderTraveller(new double[]{});
+        
+    }
+    
+    public static void program_initialization()
+    {
         dummy_data();
+        perceptron_initialization();
     }
     
     public static void dummy_data()
@@ -13,5 +21,12 @@ public class Controler
         City rome = new City(new double[]{ 0 , 39 , 14 , 2 , 5 , 0 , 0 , 295.76 , 20 } , 41.8947 , 12.4839);
         City new_york = new City(new double[]{2 , 52 , 29 , 7 , 12, 12 ,5, 290.37 , 1}, 40.7143 , -74.006);
         City sydney = new City(new double[]{0, 33, 30 , 1 , 5, 5 ,2 ,289.36 , 0} , -33.8679 , 151.2073);
+    }
+    
+    public static void perceptron_initialization()
+    {
+        PerceptronYoungTraveller.setWeights();
+        PerceptronMiddleTraveller.setWeights();
+        PerceptronElderTraveller.setWeights();
     }
 }
