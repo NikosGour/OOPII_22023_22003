@@ -65,13 +65,7 @@ public class City
             
             this.features[9] = Utils.distance(TRAVEL_AGENCY_LAT , TRAVEL_AGENCY_LON , latitude , longitude);
         }
-        
-        System.out.println(Arrays.toString(this.features));
-        
         this.normalize_features();
-        
-        System.out.println(Arrays.toString(normalized_features));
-        
         
         Utils.cities.add(this);
         
@@ -124,5 +118,15 @@ public class City
           normalized_features[8] = this.features[8] / 100;
 
           normalized_features[9] = this.features[9] / MAX_DISTANCE;
+    }
+    
+    public void print_city_features()
+    {
+        System.out.println(Arrays.toString(this.features));
+        
+        this.normalize_features();
+        
+        System.out.println(Arrays.toString(normalized_features));
+        
     }
 }

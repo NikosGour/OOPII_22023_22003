@@ -12,7 +12,7 @@ public class PerceptronYoungTraveller extends Perceptron {
 
  
       
-      public static void setWeights()
+      public static void set_weights()
       {
             weights = new double[10];
             weights[0] = 0.6;      // Cafe

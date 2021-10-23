@@ -8,7 +8,7 @@ public class PerceptronElderTraveller extends Perceptron {
             super();
       }
 
-       public static void setWeights()
+       public static void set_weights()
       {
             
             weights[0] = 0.4;      // Cafe
