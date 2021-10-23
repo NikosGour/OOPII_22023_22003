@@ -22,6 +22,12 @@ public class Controler
         City rome = new City("Rome",new double[]{ 0 , 39 , 14 , 2 , 5 , 0 , 0 , 295.76 , 20 } , 41.8947 , 12.4839);
         City new_york = new City("New York",new double[]{2 , 52 , 29 , 7 , 12, 12 ,5, 290.37 , 1}, 40.7143 , -74.006);
         City sydney = new City("Sydney",new double[]{0, 33, 30 , 1 , 5, 5 ,2 ,289.36 , 0} , -33.8679 , 151.2073);
+        City paris = new City("Paris", new double[]{18, 35, 29, 20, 0, 10, 38, 280.14, 0}, 48.8534, 2.3488);
+        City london = new City("London", new double[]{1, 48, 31, 4, 15, 4, 3, 284.72, 90}, 51.5085, -0.1257);
+        City bangkok = new City("Bangkok", new double[]{0, 40, 6, 1, 3, 2, 3, 298.88, 88}, 13.75, 100.5167);
+        City hong_kong = new City("Hong Kong", new double[]{1, 35, 1, 1, 0, 1, 2, 292.89, 98}, 22.2855, 114.1577);
+        City dubai = new City("Dubai", new double[]{0, 21, 3, 2, 1, 1, 22, 302.24, 0}, 25.2582, 55.3047);
+        City tokyo = new City("Tokyo", new double[]{0, 20, 18, 1, 7, 1, 0, 283.26, 20}, 35.6895, 139.6917);
     }
     
     public static int read_age()
