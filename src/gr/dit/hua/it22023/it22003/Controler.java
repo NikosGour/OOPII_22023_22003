@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Controler
 {
-
     public static void main(String[] args)
     {
         program_initialization();
@@ -27,11 +26,11 @@ public class Controler
     
     public static Perceptron AssignAgeGroup() {
         Perceptron Traveler = null;
-        Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Hello!\nPlease insert your age: ");
         System.out.println("(Enter \"0\" if you want to EXIT the program.");
 
-        int age = scanner.nextInt();
+        int age = Utils.scan.nextInt();
 
         if (age >= 16 && age < 25) {
             PerceptronYoungTraveller.setWeights();

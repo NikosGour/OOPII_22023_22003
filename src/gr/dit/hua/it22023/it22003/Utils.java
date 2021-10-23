@@ -1,8 +1,11 @@
 package gr.dit.hua.it22023.it22003;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public final class Utils {
+      
+      public static final Scanner scan = new Scanner(System.in);
       
       public static final ArrayList<City> cities = new ArrayList<City>();
       
