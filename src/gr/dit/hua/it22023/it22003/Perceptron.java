@@ -31,7 +31,7 @@ public abstract class Perceptron implements PerceptronTraveller {
                   inputs = city.getNormalized_features().clone();
                   System.out.printf("%f , %s\n" , summation(), city.getCityName());
             }
-            
+            System.out.println();
             return null;
       }
       

@@ -1,14 +1,14 @@
 package gr.dit.hua.it22023.it22003;
 
-import java.util.Scanner;
-
 public class Controler
 {
     public static void main(String[] args)
     {
         program_initialization();
-        Perceptron Traveler = assign_age_group(read_age());
-        Traveler.recommend();
+        while (true) {
+            Perceptron Traveler = assign_age_group(read_age());
+            Traveler.recommend();
+        }
     }
     
     public static void program_initialization()
@@ -32,13 +32,13 @@ public class Controler
         {
             System.out.println("Please insert your age");
             System.out.println("(Enter \"0\" if you want to EXIT the program.)");
-            System.out.printf("Age : ");
+            System.out.print("Age : ");
             
             while (! Utils.scan.hasNextInt())
             {
                 System.out.println();
                 System.out.println("Please enter a NUMBER.");
-                System.out.printf("Insert your age again : ");
+                System.out.print("Insert your age again : ");
                 Utils.scan.next();
             }
             
