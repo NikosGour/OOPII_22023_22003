@@ -7,7 +7,7 @@ public class Controler
     public static void main(String[] args)
     {
         program_initialization();
-        Perceptron Traveler = AssignAgeGroup();
+        Perceptron Traveler = AssignAgeGroup(ReadAge());
         Traveler.recommend();
     }
     
@@ -24,13 +24,41 @@ public class Controler
         City sydney = new City("Sydney",new double[]{0, 33, 30 , 1 , 5, 5 ,2 ,289.36 , 0} , -33.8679 , 151.2073);
     }
     
-    public static Perceptron AssignAgeGroup() {
-        Perceptron Traveler = null;
-        
+    public static int ReadAge() {
         System.out.println("Hello!\nPlease insert your age: ");
-        System.out.println("(Enter \"0\" if you want to EXIT the program.");
+        System.out.println("(Enter \"0\" if you want to EXIT the program.)");
 
-        int age = Utils.scan.nextInt();
+        int age = 0;
+        while (Utils.scan.hasNext()) {
+            if (Utils.scan.hasNextInt()) {
+                age = Utils.scan.nextInt();
+                Utils.scan.nextLine();
+
+                while ((age < 16) || (age > 115)) {
+                    if (age == 0) {
+                        System.out.println("Thank you for using the <<Travel-Advisor>> app!");
+                        System.exit(0);
+                    }
+                    System.out.println("Wrong number. Please insert an age between 16 - 115.");
+                    System.out.println();
+                    System.out.println("Insert your age again: ");
+                    age = Utils.scan.nextInt();
+                    Utils.scan.nextLine();
+                }
+
+                break;
+            }
+
+            System.out.println("Please enter a NUMBER.");
+            System.out.println("Insert your age again: ");
+            Utils.scan.next();
+        }
+
+        return age;
+    }
+    
+    public static Perceptron AssignAgeGroup(int age) {
+        Perceptron Traveler = null;
 
         if (age >= 16 && age < 25) {
             PerceptronYoungTraveller.setWeights();
