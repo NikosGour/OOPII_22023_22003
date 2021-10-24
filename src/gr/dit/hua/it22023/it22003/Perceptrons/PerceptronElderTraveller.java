@@ -1,11 +1,11 @@
-package gr.dit.hua.it22023.it22003;
+package gr.dit.hua.it22023.it22003.Perceptrons;
 
 import java.util.ArrayList;
 
 public class PerceptronElderTraveller extends Perceptron
 {
     
-    PerceptronElderTraveller()
+    public PerceptronElderTraveller()
     {
         super();
     }

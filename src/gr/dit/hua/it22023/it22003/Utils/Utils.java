@@ -1,4 +1,6 @@
-package gr.dit.hua.it22023.it22003;
+package gr.dit.hua.it22023.it22003.Utils;
+
+import gr.dit.hua.it22023.it22003.Models.City;
 
 import java.util.ArrayList;
 import java.util.Scanner;

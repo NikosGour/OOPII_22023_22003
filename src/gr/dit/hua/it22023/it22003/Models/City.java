@@ -1,5 +1,6 @@
-package gr.dit.hua.it22023.it22003;
-import gr.dit.hua.it22023.it22003.Utils;
+package gr.dit.hua.it22023.it22003.Models;
+
+import gr.dit.hua.it22023.it22003.Utils.Utils;
 
 import java.util.Arrays;
 
@@ -7,32 +8,32 @@ public class City
 {
     private String cityName;
     /**
-     *      Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
-     *      index 0: Cafe                (Y M)<br>
-     *      index 1: Sea                 (Y M E)<br>
-     *      index 2: Museum              (M E)<br>
-     *      index 3: Restaurant          (Y M E)<br>
-     *      index 4: Stadium             (Y M)<br>
-     *      index 5: Landmarks           (Y M E)<br>
-     *      index 6: Hotels              (M E)<br>
-     *      index 7: Temperature         (M E)<br>
-     *      index 8: Cloudiness          (Y M)<br>
-     *      index 9: Geodesic Distance   (M E)<br>
+     * Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
+     * index 0: Cafe                (Y M)<br>
+     * index 1: Sea                 (Y M E)<br>
+     * index 2: Museum              (M E)<br>
+     * index 3: Restaurant          (Y M E)<br>
+     * index 4: Stadium             (Y M)<br>
+     * index 5: Landmarks           (Y M E)<br>
+     * index 6: Hotels              (M E)<br>
+     * index 7: Temperature         (M E)<br>
+     * index 8: Cloudiness          (Y M)<br>
+     * index 9: Geodesic Distance   (M E)<br>
      */
     private double[] features = new double[10];
     
     /**
-     *      Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
-     *      index 0: Cafe                (Y M)<br>
-     *      index 1: Sea                 (Y M E)<br>
-     *      index 2: Museum              (M E)<br>
-     *      index 3: Restaurant          (Y M E)<br>
-     *      index 4: Stadium             (Y M)<br>
-     *      index 5: Landmarks           (Y M E)<br>
-     *      index 6: Hotels              (M E)<br>
-     *      index 7: Temperature         (M E)<br>
-     *      index 8: Cloudiness          (Y M)<br>
-     *      index 9: Geodesic Distance   (M E)<br>
+     * Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
+     * index 0: Cafe                (Y M)<br>
+     * index 1: Sea                 (Y M E)<br>
+     * index 2: Museum              (M E)<br>
+     * index 3: Restaurant          (Y M E)<br>
+     * index 4: Stadium             (Y M)<br>
+     * index 5: Landmarks           (Y M E)<br>
+     * index 6: Hotels              (M E)<br>
+     * index 7: Temperature         (M E)<br>
+     * index 8: Cloudiness          (Y M)<br>
+     * index 9: Geodesic Distance   (M E)<br>
      */
     private double[] normalized_features = new double[10];
     
@@ -45,12 +46,12 @@ public class City
     
     private static final double TRAVEL_AGENCY_LAT = 37.9838;
     private static final double TRAVEL_AGENCY_LON = 23.7275;
-
+    
     private static final double MAX_DISTANCE = 15325.599430089682;
     //endregion
     
     
-    City(String cityName , double[] features , double latitude , double longitude)
+    public City(String cityName , double[] features , double latitude , double longitude)
     {
         this.cityName = cityName;
         
@@ -71,7 +72,6 @@ public class City
         
     }
     
-   
     
     //region Getter & Setters
     
@@ -106,18 +106,20 @@ public class City
         this.normalized_features = normalized_features;
     }
     //endregion
-
-
-    private void normalize_features() {
-          for (int i = 0; i < 7; i++) {
-                normalized_features[i] = (this.features[i] - MIN_TERM) / (MAX_TERM - MIN_TERM);
-          }
-
-          normalized_features[7] = (this.features[7] - MIN_TEMPERATURE) / (MAX_TEMPERATURE - MIN_TEMPERATURE);
-
-          normalized_features[8] = this.features[8] / 100;
-
-          normalized_features[9] = this.features[9] / MAX_DISTANCE;
+    
+    
+    private void normalize_features()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            normalized_features[i] = (this.features[i] - MIN_TERM) / (MAX_TERM - MIN_TERM);
+        }
+        
+        normalized_features[7] = (this.features[7] - MIN_TEMPERATURE) / (MAX_TEMPERATURE - MIN_TEMPERATURE);
+        
+        normalized_features[8] = this.features[8] / 100;
+        
+        normalized_features[9] = this.features[9] / MAX_DISTANCE;
     }
     
     public void print_city_features()
