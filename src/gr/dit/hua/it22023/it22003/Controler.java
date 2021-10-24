@@ -7,7 +7,8 @@ public class Controler
         program_initialization();
         while (true) {
             Perceptron Traveler = assign_age_group(read_age());
-            Traveler.recommend();
+            Traveler.recommend().forEach(x -> System.out.println(x));
+            System.out.println();
         }
     }
     

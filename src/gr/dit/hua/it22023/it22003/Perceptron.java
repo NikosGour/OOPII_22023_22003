@@ -1,8 +1,6 @@
 package gr.dit.hua.it22023.it22003;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public abstract class Perceptron implements PerceptronTraveller {
       protected double[] inputs = new double[10];
@@ -12,23 +10,43 @@ public abstract class Perceptron implements PerceptronTraveller {
       Perceptron(){
       
       }
-      
-      
-      @Override
-      public ArrayList<String> recommend()
-      {
+    
+    
+    @Override
+    public ArrayList<String> recommend()
+    {
         
-            HashMap<String , Double> sortingHashmap = new HashMap<String, Double>();
+        HashMap<String, Double> hashMap = new HashMap<String, Double>();
+        
+        for (City city : Utils.cities)
+        {
+            inputs = city.getNormalized_features().clone();
+            hashMap.put(city.getCityName() , summation());
             
-            for (City city: Utils.cities)
+        }
+        
+        //Map the hashmap into a list of entries
+        ArrayList<Map.Entry<String,Double>> sorting_list = new ArrayList<>(hashMap.entrySet());
+        
+        //Sort the list based on value
+        Collections.sort(sorting_list , new Comparator<Map.Entry<String, Double>>()
+        {
+            @Override
+            public int compare(Map.Entry<String, Double> o1 , Map.Entry<String, Double> o2)
             {
-                  inputs = city.getNormalized_features().clone();
-                  System.out.printf("%f , %s\n" , summation(), city.getCityName());
-                  
+                    return o1.getValue().compareTo(o2.getValue());
             }
-            System.out.println();
-            return null;
-      }
+        });
+        
+        //Reverse the list, so most favorable location is on first index
+        Collections.reverse(sorting_list);
+        
+        //Map locations to return_value list
+        ArrayList<String> return_value = new ArrayList<>();
+        sorting_list.forEach(x -> return_value.add(x.getKey()));
+        
+        return return_value;
+    }
       
       private double summation()
       {
