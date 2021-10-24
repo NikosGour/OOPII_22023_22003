@@ -2,6 +2,7 @@ package gr.dit.hua.it22023.it22003;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public abstract class Perceptron implements PerceptronTraveller {
       protected double[] inputs = new double[10];
@@ -12,30 +13,24 @@ public abstract class Perceptron implements PerceptronTraveller {
       
       }
       
-      public static void set_weights()
-      {
-      
-      }
-      
       
       @Override
       public ArrayList<String> recommend()
       {
-//            TODO : Add the capability of setting weights dynamically based on the object's class
-//            if (this instanceof Perceptron)
-//            {
-//                  this.getClass().
-//            }
+        
+            HashMap<String , Double> sortingHashmap = new HashMap<String, Double>();
+            
             for (City city: Utils.cities)
             {
                   inputs = city.getNormalized_features().clone();
                   System.out.printf("%f , %s\n" , summation(), city.getCityName());
+                  
             }
             System.out.println();
             return null;
       }
       
-      protected double summation()
+      private double summation()
       {
             double sum = 0;
             for (int i = 0; i < 10; i++)
@@ -46,7 +41,7 @@ public abstract class Perceptron implements PerceptronTraveller {
             return sum;
       }
       
-      protected boolean activation(double input)
+      private boolean activation(double input)
       {
             return input > 10;
       }
@@ -63,6 +58,25 @@ public abstract class Perceptron implements PerceptronTraveller {
             this.inputs = inputs;
       }
       
+      public static double[] getWeights()
+      {
+            return weights;
+      }
+      
+      public static void setWeights(double[] weights)
+      {
+            Perceptron.weights = weights;
+      }
+      
+      public static double getWeightBias()
+      {
+            return weightBias;
+      }
+      
+      public static void setWeightBias(double weightBias)
+      {
+            Perceptron.weightBias = weightBias;
+      }
       
       //endregion
 }
