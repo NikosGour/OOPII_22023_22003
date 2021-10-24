@@ -7,7 +7,8 @@ public class Controler
         program_initialization();
         while (true) {
             Perceptron Traveler = assign_age_group(read_age());
-            Traveler.recommend();
+            Traveler.recommend().forEach(x -> System.out.println(x));
+            System.out.println();
         }
     }
     
@@ -61,17 +62,18 @@ public class Controler
         return age;
     }
     
-    public static Perceptron assign_age_group(int age) {
+    public static Perceptron assign_age_group(int age)
+    {
         Perceptron Traveler = null;
-
-        if (age >= 16 && age < 25) {
-            PerceptronYoungTraveller.set_weights();
+        
+        if (age >= 16 && age < 25)
+        {
             Traveler = new PerceptronYoungTraveller();
-        } else if (age >= 25 && age < 60) {
-            PerceptronMiddleTraveller.set_weights();
+        } else if (age >= 25 && age < 60)
+        {
             Traveler = new PerceptronMiddleTraveller();
-        } else if (age >= 60 && age < 115) {
-            PerceptronElderTraveller.set_weights();
+        } else if (age >= 60 && age < 115)
+        {
             Traveler = new PerceptronElderTraveller();
         }
 
