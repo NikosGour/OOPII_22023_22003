@@ -10,11 +10,11 @@
   - [x] Δημιουργια class City
   - [x] Κανονικοποιηση απλων features
   - [x] Κανονικοποιηση Θερμοκρασιας,Συννεφιας και Γεωδασικης Αποστασης
-- [ ] Ερώτημα 2
+- [x] Ερώτημα 2
   - [x] Interface PerceptronTraveller 
   - [x] 3 Classes Perceptron για καθε ηλικιακη ομαδα
-  - [ ] Δημιουργια Bias & Weights
-  - [ ] Υλοποιση Activation Function
+  - [x] Δημιουργια Bias & Weights
+  - [x] Υλοποιση Activation Function
 - [x] Ερώτημα 3
 - [ ] Ερώτημα 4
 - [ ] Ερώτημα 5

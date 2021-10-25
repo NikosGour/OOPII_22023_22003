@@ -1,7 +1,7 @@
 package gr.dit.hua.it22023.it22003;
 
 import gr.dit.hua.it22023.it22003.Models.*;
-import gr.dit.hua.it22023.it22003.Perceptrons.*;
+import gr.dit.hua.it22023.it22003.Models.Perceptrons.*;
 import gr.dit.hua.it22023.it22003.Utils.*;
 
 public class Controler
@@ -12,7 +12,7 @@ public class Controler
         while (true)
         {
             Perceptron Traveler = assign_age_group(read_age());
-            Traveler.recommend().forEach(x -> System.out.println(x));
+            Traveler.recommend();
             System.out.println();
         }
     }

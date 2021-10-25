@@ -1,4 +1,4 @@
-package gr.dit.hua.it22023.it22003.Perceptrons;
+package gr.dit.hua.it22023.it22003.Models.Perceptrons;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,6 @@ public class PerceptronMiddleTraveller extends Perceptron
         weights[7] = 0.2;    // Temperature
         weights[8] = - 0.2;  // Cloudiness
         weights[9] = 0.8;    // Geodesic Distance
-        //            weightBias = ;
+        weightBias = -0.4;
     }
 }

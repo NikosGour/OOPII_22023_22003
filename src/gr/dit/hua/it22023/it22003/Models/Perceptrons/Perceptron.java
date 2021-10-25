@@ -1,4 +1,4 @@
-package gr.dit.hua.it22023.it22003.Perceptrons;
+package gr.dit.hua.it22023.it22003.Models.Perceptrons;
 
 import gr.dit.hua.it22023.it22003.Models.City;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
@@ -16,7 +16,6 @@ public abstract class Perceptron implements PerceptronTraveller
     
     }
     
-    
     @Override
     public ArrayList<String> recommend()
     {
@@ -26,8 +25,11 @@ public abstract class Perceptron implements PerceptronTraveller
         for (City city : Utils.cities)
         {
             inputs = city.getNormalized_features().clone();
-            hashMap.put(city.getCityName() , summation());
-            
+            double city_ranking = summation();
+            if (activation(city_ranking))
+            {
+                hashMap.put(city.getCityName() , city_ranking);
+            }
         }
         
         //Map the hashmap into a list of entries
@@ -45,6 +47,8 @@ public abstract class Perceptron implements PerceptronTraveller
         
         //Reverse the list, so most favorable location is on first index
         Collections.reverse(sorting_list);
+        
+        sorting_list.forEach(x -> System.out.println(x));
         
         //Map locations to return_value list
         ArrayList<String> return_value = new ArrayList<>();
@@ -64,9 +68,30 @@ public abstract class Perceptron implements PerceptronTraveller
         return sum;
     }
     
+    public ArrayList<String> recommend(boolean isUpper)
+    {
+        ArrayList<String> return_value = this.recommend();
+        if (isUpper)
+        {
+            for (int i = 0; i < return_value.size(); i++)
+            {
+                return_value.set(i , return_value.get(i).toUpperCase());
+            }
+        }
+        else
+        {
+            for (int i = 0; i < return_value.size(); i++)
+            {
+                return_value.set(i , return_value.get(i).toLowerCase());
+            }
+        }
+        return return_value;
+        
+    }
+    
     private boolean activation(double input)
     {
-        return input > 10;
+        return input > 1.5;
     }
     
     //region Getters & Setters
