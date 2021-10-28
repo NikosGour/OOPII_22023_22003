@@ -29,6 +29,7 @@ public final class Utils
     public static void sort_cities_by_distance()
     {
         Collections.sort(Utils.cities , new Comparator<City>()
+        
         {
             @Override
             public int compare(City o1 , City o2)
