@@ -23,8 +23,8 @@ public class Controler
             Traveler.getRecommended_cities().forEach(x -> System.out.println(x));
 
             System.out.println();
-    
-       
+
+
         }
     }
     
@@ -46,16 +46,16 @@ public class Controler
 //        City dubai = new City("Dubai" , new double[]{ 0 , 21 , 3 , 2 , 1 , 1 , 22 , 302.24 , 0 } , 25.2582 , 55.3047);
 //        City tokyo = new City("Tokyo" , new double[]{ 0 , 20 , 18 , 1 , 7 , 1 , 0 , 283.26 , 20 } , 35.6895 , 139.6917);
 //
-        City athens = Utils.RetrieveData("Athens" , "gr");
-        City rome = Utils.RetrieveData("Rome" , "it");
+        City athens =     Utils.RetrieveData("Athens" , "gr");
+        City rome =       Utils.RetrieveData("Rome" , "it");
         City california = Utils.RetrieveData("California" ,"us");
-        City sydney = Utils.RetrieveData("Sydney" , "au");
-        City paris = Utils.RetrieveData("Paris" ,"fr" );
-        City london = Utils.RetrieveData("London" ,"uk");
-        City bangkok = Utils.RetrieveData("Bangkok" ,"th" );
-        City beijing = Utils.RetrieveData("Beijing", "cn");
-        City dubai = Utils.RetrieveData("Dubai" ,"uae" );
-        City tokyo = Utils.RetrieveData("Tokyo" ,"jp" );
+        City sydney =     Utils.RetrieveData("Sydney" , "au");
+        City paris =      Utils.RetrieveData("Paris" ,"fr" );
+        City london =     Utils.RetrieveData("London" ,"uk");
+        City bangkok =    Utils.RetrieveData("Bangkok" ,"th" );
+        City beijing =    Utils.RetrieveData("Beijing", "cn");
+        City dubai =      Utils.RetrieveData("Dubai" ,"uae" );
+        City tokyo =      Utils.RetrieveData("Tokyo" ,"jp" );
         
         City Corfu = Utils.RetrieveData("Corfu" , "gr");
         
