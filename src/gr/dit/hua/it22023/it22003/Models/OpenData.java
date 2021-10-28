@@ -23,12 +23,12 @@ public class OpenData {
 	 System.out.println(city+" temperature: " + (weather_obj.getMain()).getTemp());
 	 System.out.println(city+" lat: " + weather_obj.getCoord().getLat()+" lon: " + weather_obj.getCoord().getLon());
 	 MediaWiki mediaWiki_obj =  mapper.readValue(new URL("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles="+city+"&format=json&formatversion=2"),MediaWiki.class);
-	 System.out.println(city+" Wikipedia article: "+mediaWiki_obj.getQuery().getPages().get(0).getExtract());	 
+//	 System.out.println(city+" Wikipedia article: "+mediaWiki_obj.getQuery().getPages().get(0).getExtract());
 }
 
  
 public static void main(String[] args) throws IOException {
-	String appid ="";
+	String appid ="217d0917e9cae78fdb32d8e85bfa0e4b";
 	RetrieveData("Rome","it",appid);	
 	RetrieveData("Athens","gr",appid);
 	RetrieveData("Corfu","gr",appid);	
