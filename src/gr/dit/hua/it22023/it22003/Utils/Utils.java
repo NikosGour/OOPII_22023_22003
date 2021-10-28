@@ -3,8 +3,6 @@ package gr.dit.hua.it22023.it22003.Utils;
 import gr.dit.hua.it22023.it22003.Models.City;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public final class Utils {
@@ -12,19 +10,6 @@ public final class Utils {
       public static final Scanner scan = new Scanner(System.in);
       
       public static final ArrayList<City> cities = new ArrayList<City>();
-      
-      public static void sort_cities_by_distance()
-      {
-            Collections.sort(Utils.cities , new Comparator<City>()
-            {
-                  @Override
-                  public int compare(City o1 , City o2)
-                  {
-                        return Double.compare(o1.getFeatures()[9],o2.getFeatures()[9]);
-                  }
-            });
-            
-      }
       
       public static double distance(double lat1, double lon1, double lat2, double lon2) {
             final double KILOMETER_MULT = 1.609344;
