@@ -9,11 +9,31 @@ public abstract class Perceptron implements PerceptronTraveller
 {
     protected double[] inputs = new double[10];
     protected static double[] weights = new double[10];
+    private ArrayList<String> recommended_cities;
     protected static double weightBias;
     
     Perceptron()
     {
     
+    }
+    
+    
+    /**
+     * @return  The closest city in the recomment list of the given perceptron , returns null if recommend list is empty
+     */
+    public static String closest_recommended(Perceptron perceptron)
+    {
+        if (perceptron.recommended_cities.size() == 0) return null;
+        for (City city : Utils.cities)
+        {
+            if (perceptron.getRecommended_cities().indexOf(city.getCityName()) != -1)
+            {
+                return city.getCityName();
+            }
+        }
+        
+        
+        return null;
     }
     
     @Override
@@ -48,12 +68,14 @@ public abstract class Perceptron implements PerceptronTraveller
         //Reverse the list, so most favorable location is on first index
         Collections.reverse(sorting_list);
         
-        sorting_list.forEach(x -> System.out.println(x));
+//        sorting_list.forEach(x -> System.out.println(x));
         
         //Map locations to return_value list
         ArrayList<String> return_value = new ArrayList<>();
         sorting_list.forEach(x -> return_value.add(x.getKey()));
         
+        
+        this.recommended_cities = return_value;
         return return_value;
     }
     
@@ -124,6 +146,16 @@ public abstract class Perceptron implements PerceptronTraveller
     public static void setWeightBias(double weightBias)
     {
         Perceptron.weightBias = weightBias;
+    }
+    
+    public ArrayList<String> getRecommended_cities()
+    {
+        return recommended_cities;
+    }
+    
+    public void setRecommended_cities(ArrayList<String> recommended_cities)
+    {
+        this.recommended_cities = recommended_cities;
     }
     
     //endregion
