@@ -2,6 +2,7 @@ package gr.dit.hua.it22023.it22003.Models;
 
 import gr.dit.hua.it22023.it22003.Utils.Utils;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class City
@@ -51,6 +52,8 @@ public class City
     //endregion
     
     
+   
+    
     public City(String cityName , double[] features , double latitude , double longitude)
     {
         this.cityName = cityName;
@@ -70,6 +73,11 @@ public class City
         
         Utils.cities.add(this);
         
+    }
+    
+    public static City create_city(String city , String country) throws IOException
+    {
+        return OpenData.RetrieveData(city , country , Utils.APPID);
     }
     
     

@@ -17,4 +17,7 @@
   - [x] Υλοποιση Activation Function
 - [x] Ερώτημα 3
 - [x] Ερώτημα 4
-- [ ] Ερώτημα 5
+- [x] Ερώτημα 5
+- EXTRA
+  - Async execution of dummy data for lighting fast start-up compared to sync
+  

@@ -20,12 +20,7 @@ public final class Utils
     
     public static final String APPID = "217d0917e9cae78fdb32d8e85bfa0e4b";
     
-    public static City RetrieveData(String city , String country) throws IOException
-    {
-        return OpenData.RetrieveData(city , country , APPID);
-    }
-    
-    
+
     public static void sort_cities_by_distance()
     {
         Collections.sort(Utils.cities , new Comparator<City>()
