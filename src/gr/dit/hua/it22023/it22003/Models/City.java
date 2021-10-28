@@ -20,7 +20,7 @@ public class City
      * index 8: Cloudiness          (Y M)<br>
      * index 9: Geodesic Distance   (M E)<br>
      */
-    private double[] features = new double[10];
+    double[] features = new double[10];
     
     /**
      * Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
