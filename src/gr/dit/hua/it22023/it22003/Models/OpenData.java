@@ -1,6 +1,7 @@
 package gr.dit.hua.it22023.it22003.Models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import gr.dit.hua.it22023.it22003.Controler;
 import gr.dit.hua.it22023.it22003.Models.weather.OpenWeatherMap;
 import gr.dit.hua.it22023.it22003.Models.wikipedia.MediaWiki;
 
@@ -17,22 +18,27 @@ public class OpenData {
 * @param city The Wikipedia article and OpenWeatherMap city. 
 * @param country The country initials (i.e. gr, it, de).
 * @param appid Your API key of the OpenWeatherMap.*/ 
- public static void RetrieveData(String city, String country, String appid) throws  IOException {
+ public static void RetrieveData(City obj, String city, String country, String appid) throws  IOException {
 	 ObjectMapper mapper = new ObjectMapper(); 
 	 OpenWeatherMap weather_obj = mapper.readValue(new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID="+appid+""), OpenWeatherMap.class);
 	 System.out.println(city+" temperature: " + (weather_obj.getMain()).getTemp());
+	 obj.features[7] = weather_obj.getMain().getTemp();
+	 obj.features[8] = weather_obj.getClouds().getAll();
+	 System.out.println(city+"clouds: " + weather_obj.getClouds().getAll());
 	 System.out.println(city+" lat: " + weather_obj.getCoord().getLat()+" lon: " + weather_obj.getCoord().getLon());
 	 MediaWiki mediaWiki_obj =  mapper.readValue(new URL("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles="+city+"&format=json&formatversion=2"),MediaWiki.class);
 //	 System.out.println(city+" Wikipedia article: "+mediaWiki_obj.getQuery().getPages().get(0).getExtract());
+
+
 }
 
- 
+
 public static void main(String[] args) throws IOException {
 	String appid ="217d0917e9cae78fdb32d8e85bfa0e4b";
-	RetrieveData("Rome","it",appid);	
+	RetrieveData("Rome","it",appid);
 	RetrieveData("Athens","gr",appid);
-	RetrieveData("Corfu","gr",appid);	
-	RetrieveData("Berlin","de",appid);	
+	RetrieveData("New York","ny",appid);
+	RetrieveData("London","uk",appid);
 }
 
 }
