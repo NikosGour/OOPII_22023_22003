@@ -4,6 +4,8 @@ import gr.dit.hua.it22023.it22003.Models.*;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.*;
 import gr.dit.hua.it22023.it22003.Utils.*;
 
+import java.util.Arrays;
+
 public class Controler
 {
     public static void main(String[] args)
@@ -13,7 +15,10 @@ public class Controler
         {
             Perceptron Traveler = assign_age_group(read_age());
             Traveler.recommend();
+            Traveler.getRecommended_cities().forEach(x -> System.out.println(x));
+    
             System.out.println();
+            System.out.println(Perceptron.closest_recommended(Traveler));
         }
     }
     
@@ -34,6 +39,8 @@ public class Controler
         City hong_kong = new City("Hong Kong" , new double[]{ 1 , 35 , 1 , 1 , 0 , 1 , 2 , 292.89 , 98 } , 22.2855 , 114.1577);
         City dubai = new City("Dubai" , new double[]{ 0 , 21 , 3 , 2 , 1 , 1 , 22 , 302.24 , 0 } , 25.2582 , 55.3047);
         City tokyo = new City("Tokyo" , new double[]{ 0 , 20 , 18 , 1 , 7 , 1 , 0 , 283.26 , 20 } , 35.6895 , 139.6917);
+        
+        Utils.sort_cities_by_distance();
     }
     
     public static int read_age()
