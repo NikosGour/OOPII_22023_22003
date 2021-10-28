@@ -18,20 +18,15 @@ public class OpenData {
 * @param city The Wikipedia article and OpenWeatherMap city. 
 * @param country The country initials (i.e. gr, it, de).
 * @param appid Your API key of the OpenWeatherMap.*/ 
- public static void RetrieveData(City obj, String city, String country, String appid) throws  IOException {
+ public static void RetrieveData(String city, String country, String appid) throws  IOException {
 	 ObjectMapper mapper = new ObjectMapper(); 
 	 OpenWeatherMap weather_obj = mapper.readValue(new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID="+appid+""), OpenWeatherMap.class);
 	 System.out.println(city+" temperature: " + (weather_obj.getMain()).getTemp());
-	 obj.features[7] = weather_obj.getMain().getTemp();
-	 obj.features[8] = weather_obj.getClouds().getAll();
 	 System.out.println(city+"clouds: " + weather_obj.getClouds().getAll());
 	 System.out.println(city+" lat: " + weather_obj.getCoord().getLat()+" lon: " + weather_obj.getCoord().getLon());
 	 MediaWiki mediaWiki_obj =  mapper.readValue(new URL("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles="+city+"&format=json&formatversion=2"),MediaWiki.class);
 //	 System.out.println(city+" Wikipedia article: "+mediaWiki_obj.getQuery().getPages().get(0).getExtract());
-
-
 }
-
 
 public static void main(String[] args) throws IOException {
 	String appid ="217d0917e9cae78fdb32d8e85bfa0e4b";
@@ -39,6 +34,23 @@ public static void main(String[] args) throws IOException {
 	RetrieveData("Athens","gr",appid);
 	RetrieveData("New York","ny",appid);
 	RetrieveData("London","uk",appid);
+}
+
+/** Counts the number of times a criterion occurs in the city wikipedia article.
+ @param cityArticle  The String of the retrieved wikipedia article.
+ @param criterion The String of the criterion we are looking for.
+ @return An integer, the number of times the criterion-string occurs in the wikipedia article.
+ */
+public static int countCriterionfCity(String cityArticle, String criterion) {
+	cityArticle=cityArticle.toLowerCase();
+	int index = cityArticle.indexOf(criterion);
+	int count = 0;
+	while (index != -1) {
+		count++;
+		cityArticle = cityArticle.substring(index + 1);
+		index = cityArticle.indexOf(criterion);
+	}
+	return count;
 }
 
 }
