@@ -1,8 +1,11 @@
+package gr.dit.hua.it22023.it22003.Models;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import gr.dit.hua.it22023.it22003.Models.weather.OpenWeatherMap;
+import gr.dit.hua.it22023.it22003.Models.wikipedia.MediaWiki;
+
 import java.io.IOException;
 import java.net.URL;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import weather.OpenWeatherMap;
-import wikipedia.MediaWiki;
 
 /**City description and weather information using OpenData with Jackson JSON processor.
 * @since 29-2-2020
