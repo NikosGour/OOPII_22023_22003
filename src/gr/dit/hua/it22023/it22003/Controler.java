@@ -103,7 +103,7 @@ public class Controler
             }
             catch (IncorrectArgumentException e)
             {
-                Utils.scan.nextLine();
+                Utils.scan.next();
                 continue;
             }
             age = Utils.scan.nextInt();
