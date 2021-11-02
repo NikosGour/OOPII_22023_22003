@@ -15,7 +15,7 @@ public class City
      * index 2: Museum              (M E)<br>
      * index 3: Restaurant          (Y M E)<br>
      * index 4: Stadium             (Y M)<br>
-     * index 5: Landmarks           (Y M E)<br>q
+     * index 5: Landmarks           (Y M E)<br>
      * index 6: Hotels              (M E)<br>
      * index 7: Temperature         (M E)<br>
      * index 8: Cloudiness          (Y M)<br>
