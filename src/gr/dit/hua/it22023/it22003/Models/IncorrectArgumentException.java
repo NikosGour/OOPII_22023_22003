@@ -6,4 +6,8 @@ public class IncorrectArgumentException extends Exception
     {
         super(message);
     }
+    
+    public IncorrectArgumentException()
+    {
+    }
 }

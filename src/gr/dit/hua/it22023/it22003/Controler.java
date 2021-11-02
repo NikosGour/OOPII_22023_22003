@@ -4,6 +4,7 @@ import gr.dit.hua.it22023.it22003.Models.*;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.*;
 import gr.dit.hua.it22023.it22003.Utils.*;
 
+import javax.swing.plaf.IconUIResource;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -85,22 +86,26 @@ public class Controler
     
     public static int read_age()
     {
-        int age;
+        int age = -1;
         System.out.println("Hello");
         do
         {
-            System.out.println("Please insert your age");
-            System.out.println("(Enter \"0\" if you want to EXIT the program.)");
-            System.out.print("Age : ");
-            
-            while (! Utils.scan.hasNextInt())
+            try
             {
-                System.out.println();
-                System.out.println("Please enter a NUMBER.");
-                System.out.print("Insert your age again : ");
-                Utils.scan.next();
+                System.out.println("Please insert your age");
+                System.out.println("(Enter \"0\" if you want to EXIT the program.)");
+                System.out.print("Age : ");
+        
+                if (! Utils.scan.hasNextInt())
+                {
+                    throw new IncorrectArgumentException();
+                }
             }
-            
+            catch (IncorrectArgumentException e)
+            {
+                Utils.scan.nextLine();
+                continue;
+            }
             age = Utils.scan.nextInt();
             System.out.println();
             if (age == 0)
