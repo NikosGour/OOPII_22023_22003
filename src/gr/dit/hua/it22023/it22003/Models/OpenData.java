@@ -32,6 +32,7 @@ public class OpenData
         Date date = new Date();
         String dateCreated = date.toString();
         double[] features = new double[9];
+        
         ObjectMapper mapper = new ObjectMapper();
         OpenWeatherMap weather_obj = (OpenWeatherMap) mapper.readValue(new URL(
                 "http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -40,8 +41,10 @@ public class OpenData
                 country +
                 "&APPID=" +
                 appid) , OpenWeatherMap.class);
+        
         features[7] = weather_obj.getMain().getTemp();
         features[8] = (double) weather_obj.getClouds().getAll();
+        
         MediaWiki mediaWiki_obj = (MediaWiki) mapper.readValue(new URL(
                 "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=" +
                 city +
