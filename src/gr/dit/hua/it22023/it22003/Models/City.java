@@ -3,6 +3,7 @@ package gr.dit.hua.it22023.it22003.Models;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class City
@@ -51,10 +52,10 @@ public class City
     private static final double MAX_DISTANCE = 15325.599430089682;
     //endregion
     
-    
-   
-    
-    public City(String cityName , double[] features , double latitude , double longitude)
+
+
+
+    public City(String cityName , double[] features , double latitude , double longitude, String date)
     {
         this.cityName = cityName;
         
@@ -72,7 +73,6 @@ public class City
         this.normalize_features();
         
         Utils.cities.add(this);
-        
     }
     
     public static City create_city(String city , String country) throws IOException
@@ -138,5 +138,15 @@ public class City
         
         System.out.println(Arrays.toString(normalized_features));
         
+    }
+
+    // If the city already exists in the arraylist, do not proceed with OpenData.RetrieveData(...) .
+    public static boolean check_if_city_exists(ArrayList<City> cities, City this_city) {
+        for (City city : cities) {
+            if ((city.getCityName()).equals(this_city.getCityName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

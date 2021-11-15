@@ -5,6 +5,7 @@ import gr.dit.hua.it22023.it22003.Controler;
 import gr.dit.hua.it22023.it22003.Models.weather.OpenWeatherMap;
 import gr.dit.hua.it22023.it22003.Models.wikipedia.MediaWiki;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
+import java.util.Date;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +29,8 @@ public class OpenData
      */
     public static City RetrieveData(String city , String country , String appid) throws IOException
     {
+        Date date = new Date();
+        String dateCreated = date.toString();
         double[] features = new double[9];
         ObjectMapper mapper = new ObjectMapper();
         OpenWeatherMap weather_obj = (OpenWeatherMap) mapper.readValue(new URL(
@@ -50,7 +53,7 @@ public class OpenData
             features[i] = countCriterionfCity(article , Utils.critirea[i]);
         }
         
-        return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon());
+        return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon(), dateCreated);
     }
     
     public static void main(String[] args) throws IOException
