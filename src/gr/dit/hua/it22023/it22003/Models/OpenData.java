@@ -30,7 +30,6 @@ public class OpenData
     public static City RetrieveData(String city , String country , String appid) throws IOException
     {
         Date date = new Date();
-        String dateCreated = date.toString();
         double[] features = new double[9];
         
         ObjectMapper mapper = new ObjectMapper();
@@ -56,7 +55,7 @@ public class OpenData
             features[i] = countCriterionfCity(article , Utils.critirea[i]);
         }
         
-        return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon(), dateCreated);
+        return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon(), date);
     }
     
     public static void main(String[] args) throws IOException

@@ -1,14 +1,18 @@
 package gr.dit.hua.it22023.it22003.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class City
 {
+    @JsonProperty("cityName")
     private String cityName;
+    @JsonProperty("timeStamp")
+    private Date timeStamp;
     /**
      * Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
      * index 0: Cafe                (Y M)<br>
@@ -22,6 +26,7 @@ public class City
      * index 8: Cloudiness          (Y M)<br>
      * index 9: Geodesic Distance   (M E)<br>
      */
+    @JsonProperty("features")
     double[] features = new double[10];
     
     /**
@@ -37,6 +42,7 @@ public class City
      * index 8: Cloudiness          (Y M)<br>
      * index 9: Geodesic Distance   (M E)<br>
      */
+    @JsonProperty("normalized_features")
     private double[] normalized_features = new double[10];
     
     //region Constants
@@ -52,13 +58,14 @@ public class City
     private static final double MAX_DISTANCE = 15325.599430089682;
     //endregion
     
-
-
-
-    public City(String cityName , double[] features , double latitude , double longitude, String date)
+    public City()
+        {}
+    public City(String cityName , double[] features , double latitude , double longitude , Date timeStamp)
     {
-        this.cityName = cityName;
         
+        
+        this.cityName  = cityName;
+        this.timeStamp = timeStamp;
         if (features.length == 9)
         {
             for (int i = 0; i < 7; i++)
@@ -75,9 +82,13 @@ public class City
         Utils.cities.add(this);
     }
     
-    public static City create_city(String city , String country) throws IOException
+    public static void create_city(String city , String country) throws IOException
     {
-        return OpenData.RetrieveData(city , country , Utils.APPID);
+        if (!check_if_city_exists(city))
+        {
+        OpenData.RetrieveData(city , country , Utils.APPID);
+        
+        }
     }
     
     
@@ -92,6 +103,16 @@ public class City
     public void setCityName(String cityName)
     {
         this.cityName = cityName;
+    }
+    
+    public Date getTimeStamp()
+    {
+        return timeStamp;
+    }
+    
+    public void setTimeStamp(Date timeStamp)
+    {
+        this.timeStamp = timeStamp;
     }
     
     public double[] getFeatures()
@@ -139,11 +160,15 @@ public class City
         System.out.println(Arrays.toString(normalized_features));
         
     }
-
+    
     // If the city already exists in the arraylist, do not proceed with OpenData.RetrieveData(...) .
-    public static boolean check_if_city_exists(ArrayList<City> cities, City this_city) {
-        for (City city : cities) {
-            if ((city.getCityName()).equals(this_city.getCityName())) {
+    public static boolean check_if_city_exists(String cityName)
+    {
+        for (City city : Utils.cities)
+        {
+            if ((city.getCityName()).equals(cityName))
+            {
+                System.out.println(city.getTimeStamp());
                 return true;
             }
         }

@@ -14,7 +14,7 @@ public final class Utils
     
     public static final Scanner scan = new Scanner(System.in);
     
-    public static final ArrayList<City> cities = new ArrayList<City>();
+    public static  ArrayList<City> cities = new ArrayList<City>();
     public static final String[] critirea =
             { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
     
