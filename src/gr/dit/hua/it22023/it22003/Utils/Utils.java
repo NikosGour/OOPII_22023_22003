@@ -1,37 +1,39 @@
 package gr.dit.hua.it22023.it22003.Utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gr.dit.hua.it22023.it22003.Models.City;
-import gr.dit.hua.it22023.it22003.Models.OpenData;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 public final class Utils
 {
     
     public static final Scanner scan = new Scanner(System.in);
-    
-    public static  ArrayList<City> cities = new ArrayList<City>();
-    public static final String[] critirea =
+    public static  ArrayList<Thread> threads = new ArrayList<>();
+    public static  ArrayList<City> cities = new ArrayList<>();
+    public static final ObjectMapper JSON_mapper = new ObjectMapper();
+    public static final String[] criteria =
             { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
     
     public static final String APPID = "217d0917e9cae78fdb32d8e85bfa0e4b";
     
+    
+    public static void writeJSON() throws IOException
+    {
+        JSON_mapper.writeValue(new File("cities.json") , Utils.cities);
+    }
+    
+    public static void readJSON() throws IOException
+    {
+        List<City> temp_list = Arrays.asList(JSON_mapper.readValue(new File("cities.json") , City[].class));
+        Utils.cities = new ArrayList<>(temp_list);
+    }
 
     public static void sort_cities_by_distance()
     {
-        Collections.sort(Utils.cities , new Comparator<City>()
-        
-        {
-            @Override
-            public int compare(City o1 , City o2)
-            {
-                return Double.compare(o1.getFeatures()[9] , o2.getFeatures()[9]);
-            }
-        });
+        Utils.cities.sort(Comparator.comparingDouble(o -> o.getFeatures()[9]));
         
     }
     

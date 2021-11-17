@@ -1,39 +1,42 @@
 package gr.dit.hua.it22023.it22003;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import gr.dit.hua.it22023.it22003.Models.*;
-import gr.dit.hua.it22023.it22003.Models.Perceptrons.*;
-import gr.dit.hua.it22023.it22003.Utils.*;
+import gr.dit.hua.it22023.it22003.Models.City;
+import gr.dit.hua.it22023.it22003.Models.IncorrectArgumentException;
+import gr.dit.hua.it22023.it22003.Models.Perceptrons.Perceptron;
+import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronElderTraveller;
+import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronMiddleTraveller;
+import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronYoungTraveller;
+import gr.dit.hua.it22023.it22003.Utils.Utils;
 
-import javax.swing.plaf.IconUIResource;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Controler
+public class Controller
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, InterruptedException
     {
-//        program_initialization();
-        
-        //         for (City city : Utils.cities)
-        //        {
-        //            System.out.printf("%s , %s\n" , city.getCityName() , Arrays.toString(city.getFeatures()));
-        //        }
+        program_initialization();
     
-    
-        ObjectMapper mapper = new ObjectMapper();
-    
-        Utils.cities = new ArrayList<City>( Arrays.asList(mapper.readValue(new File("cities.json") , City[].class)));
-        
-//        mapper.writeValue(new File("cities.json") , Utils.cities);
+        //noinspection InfiniteLoopStatement
         while (true)
         {
             Perceptron Traveler = assign_age_group(read_age());
+            
+            for (Thread thread : Utils.threads)
+            {
+                if (thread.isAlive())
+                {
+                    //noinspection BusyWait
+                    Thread.sleep(500);
+                }
+            }
+            
+            Utils.sort_cities_by_distance();
+            
             Traveler.recommend();
-            Traveler.getRecommended_cities().forEach(x -> System.out.println(x));
+            Traveler.getRecommended_cities().forEach(System.out::println);
             
             System.out.println();
             
@@ -43,12 +46,21 @@ public class Controler
     
     public static void program_initialization() throws IOException
     {
-        sync_dummy_data();
+        try
+        {
+            Utils.readJSON();
+            System.out.println("JSON read successfully");
+        } catch (FileNotFoundException e)
+        {
+            async_dummy_data();
+            System.out.println("JSON read failed");
+        }
+      
     }
     
-    public static void async_dummy_data() throws IOException
+    public static void async_dummy_data()
     {
-        Thread[] threads ={
+        Thread[] threads = {
                         createThread("Athens" , "gr") ,
                         createThread("Rome" , "it") ,
                         createThread("California" , "us") ,
@@ -65,10 +77,10 @@ public class Controler
         {
             thread.start();
         }
-        Utils.sort_cities_by_distance();
+        Utils.threads = new ArrayList<>(List.of(threads));
     }
     
-    
+    @SuppressWarnings("unused")
     public static void sync_dummy_data() throws IOException
     {
         
@@ -84,13 +96,12 @@ public class Controler
         City.create_city("Tokyo" , "jp");
         City.create_city("Corfu" , "gr");
         
-        Utils.sort_cities_by_distance();
     }
     
     
     public static Thread createThread(String city , String country)
     {
-        Thread rv = new Thread(() -> {
+        return new Thread(() -> {
             
             try
             {
@@ -102,7 +113,6 @@ public class Controler
             
         });
         
-        return rv;
     }
     
     public static int read_age()
@@ -130,6 +140,14 @@ public class Controler
             System.out.println();
             if (age == 0)
             {
+                try
+                {
+                    Utils.writeJSON();
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                
                 System.out.println("Thank you for using the <<Travel-Advisor>> app!");
                 System.exit(0);
             }
