@@ -1,6 +1,7 @@
 package gr.dit.hua.it22023.it22003.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import gr.dit.hua.it22023.it22003.Models.OpenData.OpenData;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
 
 import java.io.IOException;
@@ -9,6 +10,8 @@ import java.util.Date;
 
 public class City
 {
+    
+    //region Fields
     @JsonProperty("cityName")
     private String cityName;
     @JsonProperty("timeStamp")
@@ -45,6 +48,8 @@ public class City
     @JsonProperty("normalized_features")
     private double[] normalized_features = new double[10];
     
+    //endregion
+    
     //region Constants
     private static final double MIN_TERM = 0;
     private static final double MAX_TERM = 10;
@@ -58,6 +63,7 @@ public class City
     private static final double MAX_DISTANCE = 15325.599430089682;
     //endregion
     
+    //region Constructors
     public City()
         {}
     public City(String cityName , double[] features , double latitude , double longitude , Date timeStamp)
@@ -81,16 +87,7 @@ public class City
         
         Utils.cities.add(this);
     }
-    
-    public static void create_city(String city , String country) throws IOException
-    {
-        if (!check_if_city_exists(city))
-        {
-        OpenData.RetrieveData(city , country , Utils.APPID);
-        
-        }
-    }
-    
+    //endregion
     
     //region Getter & Setters
     
@@ -136,6 +133,15 @@ public class City
     }
     //endregion
     
+    //region Methods
+    public static void create_city(String city , String country) throws IOException
+    {
+        if (!check_if_city_exists(city))
+        {
+        OpenData.RetrieveData(city , country , Utils.APPID);
+        
+        }
+    }
     
     private void normalize_features()
     {
@@ -174,4 +180,5 @@ public class City
         }
         return false;
     }
+    //endregion
 }

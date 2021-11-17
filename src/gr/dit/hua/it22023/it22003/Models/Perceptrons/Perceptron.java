@@ -7,17 +7,21 @@ import java.util.*;
 
 public abstract class Perceptron implements PerceptronTraveller
 {
+    //region Fields
     protected double[] inputs = new double[10];
     protected static double[] weights = new double[10];
     private ArrayList<String> recommended_cities;
     protected static double weightBias;
+    //endregion
     
+    //region Constructors
     Perceptron()
     {
     
     }
+    //endregion
     
-    
+    //region Methods
     /**
      * @return  The closest city in the recomment list of the given perceptron , returns null if recommend list is empty
      */
@@ -115,6 +119,7 @@ public abstract class Perceptron implements PerceptronTraveller
     {
         return input > 1.5;
     }
+    //endregion
     
     //region Getters & Setters
     

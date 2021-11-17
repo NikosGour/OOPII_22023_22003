@@ -2,7 +2,7 @@ package gr.dit.hua.it22023.it22003.Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gr.dit.hua.it22023.it22003.Models.City;
-import gr.dit.hua.it22023.it22003.Models.IncorrectArgumentException;
+import gr.dit.hua.it22023.it22003.Exceptions.IncorrectArgumentException;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.Perceptron;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronElderTraveller;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronMiddleTraveller;
@@ -15,17 +15,16 @@ import java.util.*;
 
 public final class Utils
 {
-    
-    public static final Scanner scan = new Scanner(System.in);
+    //region Constants
     public static  ArrayList<Thread> threads = new ArrayList<>();
     public static  ArrayList<City> cities = new ArrayList<>();
+    public static final Scanner scan = new Scanner(System.in);
     public static final ObjectMapper JSON_mapper = new ObjectMapper();
-    public static final String[] criteria =
-            { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
-    
+    public static final String[] criteria = { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
     public static final String APPID = "217d0917e9cae78fdb32d8e85bfa0e4b";
+    //endregion
     
-    
+    //region JSON
     public static void writeJSON() throws IOException
     {
         JSON_mapper.writeValue(new File("cities.json") , cities);
@@ -36,7 +35,9 @@ public final class Utils
         List<City> temp_list = Arrays.asList(JSON_mapper.readValue(new File("cities.json") , City[].class));
         cities = new ArrayList<>(temp_list);
     }
-
+    //endregion
+    
+    //region Program Initialization
     public static void program_initialization() throws IOException
     {
         try
@@ -90,24 +91,9 @@ public final class Utils
         City.create_city("Corfu" , "gr");
         
     }
+    //endregion
     
-    
-    public static Thread createThread(String city , String country)
-    {
-        return new Thread(() -> {
-            
-            try
-            {
-                City.create_city(city , country);
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            
-        });
-        
-    }
-    
+    //region Perceptron Initialization
     public static int read_age()
     {
         int age = - 1;
@@ -170,12 +156,24 @@ public final class Utils
         return Traveler;
     }
     
+    //endregion
     
-    
-    
-    
-    
-    
+    //region Miscellaneous methods
+    public static Thread createThread(String city , String country)
+    {
+        return new Thread(() -> {
+            
+            try
+            {
+                City.create_city(city , country);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            
+        });
+        
+    }
     
     public static void sort_cities_by_distance()
     {
@@ -202,4 +200,6 @@ public final class Utils
             return (dist);
         }
     }
+    
+    //endregion
 }

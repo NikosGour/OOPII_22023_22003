@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class PerceptronYoungTraveller extends Perceptron
 {
     
-    
+    //region Constructors
     public PerceptronYoungTraveller()
     {
         super();
     }
+    //endregion
     
+    //region Methods
     @Override
     public ArrayList<String> recommend()
     {
@@ -34,4 +36,5 @@ public class PerceptronYoungTraveller extends Perceptron
         weights[9] = - 0.6;    // Geodesic Distance
         weightBias = 1;
     }
+    //endregion
 }
