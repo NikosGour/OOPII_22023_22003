@@ -32,7 +32,8 @@ public final class Utils
     
     public static void readJSON() throws IOException
     {
-        List<City> temp_list = Arrays.asList(JSON_mapper.readValue(new File("cities.json") , City[].class));
+        City[] city_arr = JSON_mapper.readValue(new File("cities.json") , City[].class);
+        List<City> temp_list = Arrays.asList(city_arr);
         cities = new ArrayList<>(temp_list);
     }
     //endregion
