@@ -18,6 +18,7 @@ public class PerceptronElderTraveller extends Perceptron
     @Override
     public ArrayList<String> sortRecommendations()
     {
+//        Collections.sort(this.getRecommended_cities() , new Comp);
         return null;
     }
     

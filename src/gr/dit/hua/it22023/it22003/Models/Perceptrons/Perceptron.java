@@ -10,7 +10,7 @@ public abstract class Perceptron implements PerceptronTraveller
     //region Fields
     protected double[] inputs = new double[10];
     protected static double[] weights = new double[10];
-    private ArrayList<String> recommended_cities;
+    private ArrayList<City> recommended_cities;
     protected static double weightBias;
     //endregion
     
@@ -47,7 +47,7 @@ public abstract class Perceptron implements PerceptronTraveller
     public ArrayList<String> recommend()
     {
         
-        HashMap<String, Double> hashMap = new HashMap<String, Double>();
+        HashMap<City, Double> hashMap = new HashMap<>();
         
         for (City city : Utils.cities)
         {
@@ -55,18 +55,18 @@ public abstract class Perceptron implements PerceptronTraveller
             double city_ranking = summation();
             if (activation(city_ranking))
             {
-                hashMap.put(city.getCityName() , city_ranking);
+                hashMap.put(city , city_ranking);
             }
         }
         
         //Map the hashmap into a list of entries
-        ArrayList<Map.Entry<String, Double>> sorting_list = new ArrayList<>(hashMap.entrySet());
+        ArrayList<Map.Entry<City, Double>> sorting_list = new ArrayList<>(hashMap.entrySet());
         
         //Sort the list based on value
-        Collections.sort(sorting_list , new Comparator<Map.Entry<String, Double>>()
+        Collections.sort(sorting_list , new Comparator<Map.Entry<City, Double>>()
         {
             @Override
-            public int compare(Map.Entry<String, Double> o1 , Map.Entry<String, Double> o2)
+            public int compare(Map.Entry<City, Double> o1 , Map.Entry<City, Double> o2)
             {
                 return o1.getValue().compareTo(o2.getValue());
             }
@@ -78,11 +78,13 @@ public abstract class Perceptron implements PerceptronTraveller
 //        sorting_list.forEach(x -> System.out.println(x));
         
         //Map locations to return_value list
+        ArrayList<City> recommended_cities = new ArrayList<>();
+        sorting_list.forEach(x -> recommended_cities.add(x.getKey()));
+        this.recommended_cities = recommended_cities;
+        
         ArrayList<String> return_value = new ArrayList<>();
-        sorting_list.forEach(x -> return_value.add(x.getKey()));
+        recommended_cities.forEach(x -> return_value.add(x.getCityName()));
         
-        
-        this.recommended_cities = return_value;
         return return_value;
     }
     
@@ -156,12 +158,12 @@ public abstract class Perceptron implements PerceptronTraveller
         Perceptron.weightBias = weightBias;
     }
     
-    public ArrayList<String> getRecommended_cities()
+    public ArrayList<City> getRecommended_cities()
     {
         return recommended_cities;
     }
     
-    public void setRecommended_cities(ArrayList<String> recommended_cities)
+    public void setRecommended_cities(ArrayList<City> recommended_cities)
     {
         this.recommended_cities = recommended_cities;
     }

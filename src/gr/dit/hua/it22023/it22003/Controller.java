@@ -27,8 +27,7 @@ public class Controller
             
             Utils.sort_cities_by_distance();
             
-            Traveler.recommend();
-            Traveler.getRecommended_cities().forEach(System.out::println);
+            Traveler.recommend().forEach(System.out::println);
             
             System.out.println();
             
