@@ -1,6 +1,9 @@
 package gr.dit.hua.it22023.it22003.Models.Perceptrons;
 
+import gr.dit.hua.it22023.it22003.Models.City;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class PerceptronMiddleTraveller extends Perceptron
 {
@@ -12,9 +15,17 @@ public class PerceptronMiddleTraveller extends Perceptron
     //endregion
     
     //region Methods
-       @Override
-    public void sortRecommendations()
-    {
+    @Override
+    public void sortRecommendations() {
+        this.getRecommended_cities().sort(new Comparator<>() {
+            @Override
+            public int compare(City o1, City o2) {
+                var x = o1.getTimeStamp();
+                var y = o2.getTimeStamp();
+
+                return x.compareTo(y);
+            }
+        });
     }
     
     @Override
