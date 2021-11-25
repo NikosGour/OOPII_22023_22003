@@ -13,9 +13,8 @@ public class PerceptronMiddleTraveller extends Perceptron
     
     //region Methods
        @Override
-    public ArrayList<String> sortRecommendations()
+    public void sortRecommendations()
     {
-        return null;
     }
     
     @Override
