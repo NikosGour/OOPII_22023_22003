@@ -9,9 +9,18 @@ public class PerceptronElderTraveller extends Perceptron
     {
         super();
     }
+    
+  
     //endregion
     
     //region Methods
+    
+    @Override
+    public ArrayList<String> sortRecommendations()
+    {
+        return null;
+    }
+    
     @Override
     public ArrayList<String> recommend()
     {
