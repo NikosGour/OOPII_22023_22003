@@ -25,7 +25,7 @@ public class Controller
                 }
             }
             
-            Utils.sort_cities_by_distance();
+            Utils.after_threads_died_routine();
             
             Traveler.recommend().forEach(System.out::println);
             

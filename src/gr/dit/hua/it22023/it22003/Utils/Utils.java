@@ -11,16 +11,19 @@ import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronYoungTraveller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public final class Utils
 {
     //region Constants
-    public static  ArrayList<Thread> threads = new ArrayList<>();
-    public static  ArrayList<City> cities = new ArrayList<>();
+    public static ArrayList<Thread> threads = new ArrayList<>();
+    public static HashMap<String, ArrayList<String>> cities_by_day = new HashMap<>();
+    public static ArrayList<City> cities = new ArrayList<>();
     public static final Scanner scan = new Scanner(System.in);
     public static final ObjectMapper JSON_mapper = new ObjectMapper();
-    public static final String[] criteria = { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
+    public static final String[] criteria =
+            { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
     public static final String APPID = "217d0917e9cae78fdb32d8e85bfa0e4b";
     //endregion
     
@@ -41,6 +44,8 @@ public final class Utils
     //region Program Initialization
     public static void program_initialization() throws IOException
     {
+        initialize_weekdays();
+        
         try
         {
             readJSON();
@@ -50,23 +55,13 @@ public final class Utils
             async_dummy_data();
             System.out.println("JSON read failed");
         }
-      
+        
     }
     
     public static void async_dummy_data()
     {
-        Thread[] threads = {
-                        createThread("Athens" , "gr") ,
-                        createThread("Rome" , "it") ,
-                        createThread("California" , "us") ,
-                        createThread("Sydney" , "au") ,
-                        createThread("Paris" , "fr") ,
-                        createThread("London" , "uk") ,
-                        createThread("Bangkok" , "th") ,
-                        createThread("Beijing" , "cn") ,
-                        createThread("Dubai" , "uae") ,
-                        createThread("Tokyo" , "jp") ,
-                        createThread("Corfu" , "gr") };
+        Thread[] threads =
+                { createThread("Athens" , "gr") , createThread("Rome" , "it") , createThread("California" , "us") , createThread("Sydney" , "au") , createThread("Paris" , "fr") , createThread("London" , "uk") , createThread("Bangkok" , "th") , createThread("Beijing" , "cn") , createThread("Dubai" , "uae") , createThread("Tokyo" , "jp") , createThread("Corfu" , "gr") };
         
         for (Thread thread : threads)
         {
@@ -160,6 +155,33 @@ public final class Utils
     //endregion
     
     //region Miscellaneous methods
+    public static void after_threads_died_routine()
+    {
+        Utils.sort_cities_by_distance();
+        Utils.setCities_by_day();
+    }
+    
+    public static void initialize_weekdays()
+    {
+        cities_by_day.put("Monday" , new ArrayList<>());
+        cities_by_day.put("Tuesday" , new ArrayList<>());
+        cities_by_day.put("Wednesday" , new ArrayList<>());
+        cities_by_day.put("Thursday" , new ArrayList<>());
+        cities_by_day.put("Friday" , new ArrayList<>());
+        cities_by_day.put("Saturday" , new ArrayList<>());
+        cities_by_day.put("Sunday" , new ArrayList<>());
+    }
+    
+    public static void setCities_by_day()
+    {
+        var simpleDateformat = new SimpleDateFormat("EEEE");
+        for (City city : cities)
+        {
+            String day = simpleDateformat.format(city.getTimeStamp());
+            Utils.cities_by_day.get(day).add(city.getCityName());
+        }
+    }
+    
     public static Thread createThread(String city , String country)
     {
         return new Thread(() -> {

@@ -29,6 +29,7 @@ public class OpenData
     public static void RetrieveData(String city , String country , String appid) throws IOException
     {
         Date date = new Date();
+        
         double[] features = new double[9];
         
         ObjectMapper mapper = new ObjectMapper();
