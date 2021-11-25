@@ -30,10 +30,6 @@ public class Controller
             Traveler.recommend().forEach(System.out::println);
             
             System.out.println();
-            
-            
-            
-            
         }
     }
    
