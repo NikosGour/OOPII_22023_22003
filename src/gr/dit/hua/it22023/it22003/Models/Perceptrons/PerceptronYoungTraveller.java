@@ -15,7 +15,7 @@ public class PerceptronYoungTraveller extends Perceptron
     }
 
     @Override
-    public ArrayList<String> sortRecommendations() {
+    public void sortRecommendations() {
         this.getRecommended_cities().sort(new Comparator<>() {
             @Override
             public int compare(City o1, City o2) {
@@ -25,7 +25,6 @@ public class PerceptronYoungTraveller extends Perceptron
                 return Double.compare(x, y);
             }
         });
-        return null;
     }
     //endregion
     
