@@ -40,7 +40,7 @@ public abstract class Perceptron implements PerceptronTraveller
         return null;
     }
     
-    public abstract ArrayList<String> sortRecommendations();
+    public abstract void sortRecommendations();
     
     
     @Override
