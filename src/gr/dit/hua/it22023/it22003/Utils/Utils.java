@@ -47,7 +47,7 @@ public final class Utils
             System.out.println("JSON read successfully");
         } catch (FileNotFoundException e)
         {
-            async_dummy_data();
+            sync_dummy_data();
             System.out.println("JSON read failed");
         }
       

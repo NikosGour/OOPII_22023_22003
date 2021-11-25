@@ -32,7 +32,13 @@ public class PerceptronMiddleTraveller extends Perceptron
     public ArrayList<String> recommend()
     {
         set_weights();
-        return super.recommend();
+        super.recommend();
+        sortRecommendations();
+        
+        ArrayList<String> return_value = new ArrayList<>();
+        this.getRecommended_cities().forEach(x -> return_value.add(x.getCityName()));
+        
+        return return_value;
     }
     
     private static void set_weights()
