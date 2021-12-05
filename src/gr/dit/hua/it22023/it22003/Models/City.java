@@ -5,7 +5,6 @@ import gr.dit.hua.it22023.it22003.Models.OpenData.OpenData;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Date;
 
 public class City
@@ -134,15 +133,27 @@ public class City
     //endregion
     
     //region Methods
-    public static void create_city(String city , String country) throws IOException
+    
+    /**
+     * calls the api to create a city object
+     * @param city City name for api
+     * @param country Country abbreviation for api
+     * @throws IOException if city doesn't exist
+     */
+    public static City create_city(String city , String country) throws IOException
     {
         if (!check_if_city_exists(city))
         {
-        OpenData.RetrieveData(city , country , Utils.APPID);
+        return OpenData.RetrieveData(city , country , Utils.APPID);
         
         }
+        return null;
     }
     
+    
+    /**
+     * Normalization of all the features
+     */
     private void normalize_features()
     {
         for (int i = 0; i < 7; i++)
@@ -157,17 +168,13 @@ public class City
         normalized_features[9] = this.features[9] / MAX_DISTANCE;
     }
     
-    public void print_city_features()
-    {
-        System.out.println(Arrays.toString(this.features));
-        
-        this.normalize_features();
-        
-        System.out.println(Arrays.toString(normalized_features));
-        
-    }
     
-    // If the city already exists in the arraylist, do not proceed with OpenData.RetrieveData(...) .
+    /**
+     * If the city already exists in the arraylist, do not proceed with OpenData.RetrieveData(...) .
+     * @param cityName the city name to check
+     * @return true if city already exist , otherwise false
+     */
+   
     public static boolean check_if_city_exists(String cityName)
     {
         for (City city : Utils.cities)

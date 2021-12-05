@@ -15,6 +15,10 @@ public class PerceptronMiddleTraveller extends Perceptron
     //endregion
     
     //region Methods
+    
+    /**
+     * Sort recommended cities based on time created
+     */
     @Override
     public void sortRecommendations() {
         this.getRecommended_cities().sort(new Comparator<>() {

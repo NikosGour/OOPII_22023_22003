@@ -19,6 +19,9 @@ public class PerceptronElderTraveller extends Perceptron
     
     //region Methods
     
+    /**
+     * Sort the recommended cities by geodesic distance
+     */
     @Override
     public void sortRecommendations()
     {

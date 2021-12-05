@@ -26,7 +26,7 @@ public class OpenData
      * @param country The country initials (i.e. gr, it, de).
      * @param appid   Your API key of the OpenWeatherMap.
      */
-    public static void RetrieveData(String city , String country , String appid) throws IOException
+    public static City RetrieveData(String city , String country , String appid) throws IOException
     {
         Date date = new Date();
         
@@ -55,7 +55,7 @@ public class OpenData
             features[i] = countCriterionCity(article , Utils.criteria[i]);
         }
     
-        new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon() , date);
+        return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon() , date);
     }
     
     /**

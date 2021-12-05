@@ -14,7 +14,15 @@ public class PerceptronYoungTraveller extends Perceptron
         super();
     }
 
-    @Override
+   
+    //endregion
+    
+    //region Methods
+    
+    /**
+     * Sort recommended cities based on geodesic distance
+     */
+     @Override
     public void sortRecommendations() {
         this.getRecommended_cities().sort(new Comparator<>() {
             @Override
@@ -26,9 +34,6 @@ public class PerceptronYoungTraveller extends Perceptron
             }
         });
     }
-    //endregion
-    
-    //region Methods
     @Override
     public ArrayList<String> recommend()
     {

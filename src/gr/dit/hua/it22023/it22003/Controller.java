@@ -3,11 +3,12 @@ package gr.dit.hua.it22023.it22003;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.Perceptron;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
 
-import java.io.IOException;
-
+/**
+ * Main Class with the main function
+ */
 public class Controller
 {
-    public static void main(String[] args) throws IOException, InterruptedException
+    public static void main(String[] args) throws InterruptedException
     {
         Utils.program_initialization();
     

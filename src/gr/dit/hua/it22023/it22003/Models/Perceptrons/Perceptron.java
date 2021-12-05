@@ -43,6 +43,10 @@ public abstract class Perceptron implements PerceptronTraveller
     public abstract void sortRecommendations();
     
     
+    /**
+     *  Recommends the cities based on the perceptron type
+     * @return arraylist of recommended cities
+     */
     @Override
     public ArrayList<String> recommend()
     {
@@ -99,6 +103,11 @@ public abstract class Perceptron implements PerceptronTraveller
         return sum;
     }
     
+    /**
+     * Recommends a cities based on perceptron type
+     * @param isUpper a param to set the names to upper or not
+     * @return same as recommend
+     */
     public ArrayList<String> recommend(boolean isUpper)
     {
         ArrayList<String> return_value = this.recommend();

@@ -1,19 +1,21 @@
 package gr.dit.hua.it22023.it22003.Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gr.dit.hua.it22023.it22003.Models.City;
 import gr.dit.hua.it22023.it22003.Exceptions.IncorrectArgumentException;
+import gr.dit.hua.it22023.it22003.Models.City;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.Perceptron;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronElderTraveller;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronMiddleTraveller;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.PerceptronYoungTraveller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * A static class that contains miscellaneous methods and variables
+ */
 public final class Utils
 {
     //region Constants
@@ -28,11 +30,19 @@ public final class Utils
     //endregion
     
     //region JSON
+    /**
+     * Writes the cities arraylist into json.
+     * @throws IOException if file missing
+     */
     public static void writeJSON() throws IOException
     {
         JSON_mapper.writeValue(new File("cities.json") , cities);
     }
     
+    /**
+     * Reads the json file to initialize the cities arraylist
+     * @throws IOException if file missing
+     */
     public static void readJSON() throws IOException
     {
         City[] city_arr = JSON_mapper.readValue(new File("cities.json") , City[].class);
@@ -42,7 +52,12 @@ public final class Utils
     //endregion
     
     //region Program Initialization
-    public static void program_initialization() throws IOException
+    
+    
+    /**
+     *  Sets the cities arraylist for perceptron city picking + initializes the cities_by_day HashMap
+     */
+    public static void program_initialization()
     {
         initialize_weekdays();
         
@@ -50,7 +65,7 @@ public final class Utils
         {
             readJSON();
             System.out.println("JSON read successfully");
-        } catch (FileNotFoundException e)
+        } catch (IOException e)
         {
             async_dummy_data();
             System.out.println("JSON read failed");
@@ -58,6 +73,9 @@ public final class Utils
         
     }
     
+    /**
+     * Initializes all the cities asynchronously
+     */
     public static void async_dummy_data()
     {
         Thread[] threads =
@@ -70,6 +88,10 @@ public final class Utils
         Utils.threads = new ArrayList<>(List.of(threads));
     }
     
+    /**
+     * Initializes all the cities synchronously
+     * @throws IOException if city doesn't exist
+     */
     @SuppressWarnings("unused")
     public static void sync_dummy_data() throws IOException
     {
@@ -155,13 +177,19 @@ public final class Utils
     //endregion
     
     //region Miscellaneous methods
+    /**
+     * Functions that must wait for all the threads to die for them to execute correctly
+     */
     public static void after_threads_died_routine()
     {
         Utils.sort_cities_by_distance();
         Utils.setCities_by_day();
     }
     
-    public static void initialize_weekdays()
+    /**
+     * Initialize the cities_by_day HashMap
+     */
+    private static void initialize_weekdays()
     {
         cities_by_day.put("Monday" , new ArrayList<>());
         cities_by_day.put("Tuesday" , new ArrayList<>());
@@ -172,7 +200,10 @@ public final class Utils
         cities_by_day.put("Sunday" , new ArrayList<>());
     }
     
-    public static void setCities_by_day()
+    /**
+     * Maps the cities into cities_by_day HashMap
+     */
+    private static void setCities_by_day()
     {
         var simpleDateformat = new SimpleDateFormat("EEEE");
         for (City city : cities)
@@ -182,7 +213,13 @@ public final class Utils
         }
     }
     
-    public static Thread createThread(String city , String country)
+    /**
+     * Creates a thread of the city constructor for the thread array
+     * @param city City name for api
+     * @param country Country abbreviation for api
+     * @return a Thread for the thread array
+     */
+    private static Thread createThread(String city , String country)
     {
         return new Thread(() -> {
             
@@ -198,12 +235,23 @@ public final class Utils
         
     }
     
+    /**
+     * Sorts cities by distance
+     */
     public static void sort_cities_by_distance()
     {
         Utils.cities.sort(Comparator.comparingDouble(o -> o.getFeatures()[9]));
         
     }
     
+    /**
+     * Calculates the distance between two cities
+     * @param lat1 Latitude of the city 1
+     * @param lon1 Longitude of the city 1
+     * @param lat2 Latitude of the city 2
+     * @param lon2 Longitude of the city 2
+     * @return the distance
+     */
     public static double distance(double lat1 , double lon1 , double lat2 , double lon2)
     {
         final double KILOMETER_MULT = 1.609344;
