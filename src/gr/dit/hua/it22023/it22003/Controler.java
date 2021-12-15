@@ -4,6 +4,7 @@ import gr.dit.hua.it22023.it22003.Models.*;
 import gr.dit.hua.it22023.it22003.Models.Perceptrons.*;
 import gr.dit.hua.it22023.it22003.Utils.*;
 
+import javax.swing.*;
 import javax.swing.plaf.IconUIResource;
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,6 +13,8 @@ public class Controler
 {
     public static void main(String[] args) throws IOException
     {
+        CreateGUI();
+
         program_initialization();
         //         for (City city : Utils.cities)
         //        {
@@ -135,5 +138,17 @@ public class Controler
         }
         
         return Traveler;
+    }
+
+    public static void CreateGUI() {
+        ImageIcon earth_img = new ImageIcon("image.jpg");
+
+        JFrame GUI = new JFrame("Travel Advisor");
+        GUI.setIconImage(earth_img.getImage());
+        GUI.setSize(500, 500);
+        GUI.setLocationRelativeTo(null);
+        GUI.setVisible(true);
+        GUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 }
