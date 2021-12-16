@@ -12,8 +12,6 @@ public class Controller
 {
     public static void main(String[] args) throws InterruptedException
     {
-        
-        CreateGUI();
         Utils.program_initialization();
     
         //noinspection InfiniteLoopStatement
@@ -37,17 +35,4 @@ public class Controller
             System.out.println();
         }
     }
-    
-     public static void CreateGUI() {
-        ImageIcon earth_img = new ImageIcon("image.jpg");
-
-        JFrame GUI = new JFrame("Travel Advisor");
-        GUI.setIconImage(earth_img.getImage());
-        GUI.setSize(500, 500);
-        GUI.setLocationRelativeTo(null);
-        GUI.setVisible(true);
-        GUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    }
-   
 }
