@@ -13,7 +13,7 @@ public class GUI extends JFrame
     public GUI(String title) throws HeadlessException
     {
         super(title);
-        initComponents();
+        initComponents();;
     }
     
     public GUI() throws HeadlessException
