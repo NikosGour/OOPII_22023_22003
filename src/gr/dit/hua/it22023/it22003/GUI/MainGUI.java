@@ -2,17 +2,23 @@ package gr.dit.hua.it22023.it22003.GUI;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import gr.dit.hua.it22023.it22003.Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class MainGUI extends JFrame
 {
     private JPanel MainPanel;
+    public JTextPane recommendCitiesTextPane;
     
     public MainGUI(String title) throws HeadlessException
     {
         super(title);
+        initComponents();
         this.setLayout(null);
         this.setPreferredSize(new Dimension(500 , 500));
         this.setLocationRelativeTo(null);
@@ -23,11 +29,32 @@ public class MainGUI extends JFrame
         AgeSelectionWindow ageSelectionWindow = new AgeSelectionWindow("peos" , this);
     }
     
+    
+    private void initComponents()
+    {
+        this.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                try
+                {
+                    Utils.writeJSON();
+                } catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
     public static void CreateGUI()
     {
         MainGUI GUI = new MainGUI("Travel Advisor");
-        
-        
+    }
+    
+    public void close()
+    {
+        this.dispatchEvent(new WindowEvent(this , WindowEvent.WINDOW_CLOSING));
     }
     
     {
@@ -48,9 +75,9 @@ public class MainGUI extends JFrame
     {
         MainPanel = new JPanel();
         MainPanel.setLayout(new GridLayoutManager(1 , 1 , new Insets(0 , 0 , 0 , 0) , - 1 , - 1));
-        final JLabel label1 = new JLabel();
-        label1.setText("TEST");
-        MainPanel.add(label1 , new GridConstraints(0 , 0 , 1 , 1 , GridConstraints.ANCHOR_WEST , GridConstraints.FILL_NONE , GridConstraints.SIZEPOLICY_FIXED , GridConstraints.SIZEPOLICY_FIXED , null , null , null , 0 , false));
+        recommendCitiesTextPane = new JTextPane();
+        recommendCitiesTextPane.setEditable(false);
+        MainPanel.add(recommendCitiesTextPane , new GridConstraints(0 , 0 , 1 , 1 , GridConstraints.ANCHOR_CENTER , GridConstraints.FILL_BOTH , GridConstraints.SIZEPOLICY_WANT_GROW , GridConstraints.SIZEPOLICY_WANT_GROW , null , new Dimension(150 , 50) , null , 0 , false));
     }
     
     /**
