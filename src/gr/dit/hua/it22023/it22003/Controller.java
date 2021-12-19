@@ -11,7 +11,7 @@ public class Controller
     public static void main(String[] args)
     {
     
-        GUI.CreateGUI();
         Utils.program_initialization();
+        MainGUI.CreateGUI();
     }
 }

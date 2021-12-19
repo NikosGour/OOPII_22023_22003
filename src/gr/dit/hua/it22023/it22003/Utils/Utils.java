@@ -112,53 +112,12 @@ public final class Utils
     //endregion
     
     //region Perceptron Initialization
-    public static int read_age()
-    {
-        int age = - 1;
-        System.out.println("Hello");
-        do
-        {
-            try
-            {
-                System.out.println("Please insert your age");
-                System.out.println("(Enter \"0\" if you want to EXIT the program.)");
-                System.out.print("Age : ");
-                
-                if (! scan.hasNextInt())
-                {
-                    throw new IncorrectArgumentException();
-                }
-            } catch (IncorrectArgumentException e)
-            {
-                scan.next();
-                continue;
-            }
-            age = scan.nextInt();
-            System.out.println();
-            if (age == 0)
-            {
-                try
-                {
-                    writeJSON();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-                
-                System.out.println("Thank you for using the <<Travel-Advisor>> app!");
-                System.exit(0);
-            }
-            
-        } while ((age < 16) || (age > 115));
-        
-        return age;
-    }
+  
     
-    public static Perceptron assign_age_group()
+    public static Perceptron assign_age_group(int age) throws IncorrectArgumentException
     {
-        int age = read_age();
         
-        Perceptron Traveler = null;
+        Perceptron Traveler;
         
         if (age >= 16 && age < 25)
         {
@@ -170,6 +129,7 @@ public final class Utils
         {
             Traveler = new PerceptronElderTraveller();
         }
+        else throw new IncorrectArgumentException();
         
         return Traveler;
     }
@@ -233,6 +193,18 @@ public final class Utils
             
         });
         
+    }
+    
+    public static void threadSafety() throws InterruptedException
+    {
+        for (Thread thread : Utils.threads)
+            {
+                if (thread.isAlive())
+                {
+                    Thread.sleep(500);
+                }
+            }
+
     }
     
     /**
