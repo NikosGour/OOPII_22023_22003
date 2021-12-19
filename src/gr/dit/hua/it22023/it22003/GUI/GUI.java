@@ -15,12 +15,13 @@ public class GUI extends JFrame
     private JButton confirmButton;
     private JLabel ageLabel;
     
-    public GUI(String title) throws HeadlessException
-    {
+    public GUI(String title) throws HeadlessException {
         super(title);
         initComponents();
         this.setLayout(null);
         this.setPreferredSize(new Dimension(400 , 100));
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setContentPane(Main_Panel1);
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,8 +29,8 @@ public class GUI extends JFrame
     }
     
     
-    private void initComponents()
-    {
+    private void initComponents() {
+        this.ageLabel.setText("Please enter your age");
     }
     
     public static void CreateGUI()
@@ -83,5 +84,4 @@ public class GUI extends JFrame
     {
         return Main_Panel1;
     }
-    
 }
