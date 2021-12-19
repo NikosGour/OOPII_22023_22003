@@ -7,8 +7,6 @@ public class GUI extends JFrame
 {
     
     private JPanel Main_Panel;
-    private JButton button1;
-    private JButton button2;
     
     public GUI(String title) throws HeadlessException
     {
@@ -24,10 +22,6 @@ public class GUI extends JFrame
     
     private void initComponents()
     {
-        button1.setSize(new Dimension(100 , 100));
-        button2.setSize(new Dimension(100 , 100));
-        button1.setText("Hello");
-        button2.setText("World");
    
     }
     
