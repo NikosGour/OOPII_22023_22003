@@ -79,7 +79,7 @@ public final class Utils
     public static void async_dummy_data()
     {
         Thread[] threads =
-                { createThread("Athens" , "gr") , createThread("Rome" , "it") , createThread("California" , "us") , createThread("Sydney" , "au") , createThread("Paris" , "fr") , createThread("London" , "uk") , createThread("Bangkok" , "th") , createThread("Beijing" , "cn") , createThread("Dubai" , "uae") , createThread("Tokyo" , "jp") , createThread("Corfu" , "gr") };
+                { createThread("Athens" , "src/gr") , createThread("Rome" , "it") , createThread("California" , "us") , createThread("Sydney" , "au") , createThread("Paris" , "fr") , createThread("London" , "uk") , createThread("Bangkok" , "th") , createThread("Beijing" , "cn") , createThread("Dubai" , "uae") , createThread("Tokyo" , "jp") , createThread("Corfu" , "src/gr") };
         
         for (Thread thread : threads)
         {
@@ -96,7 +96,7 @@ public final class Utils
     public static void sync_dummy_data() throws IOException
     {
         
-        City.create_city("Athens" , "gr");
+        City.create_city("Athens" , "src/gr");
         City.create_city("Rome" , "it");
         City.create_city("California" , "us");
         City.create_city("Sydney" , "au");
@@ -106,7 +106,7 @@ public final class Utils
         City.create_city("Beijing" , "cn");
         City.create_city("Dubai" , "uae");
         City.create_city("Tokyo" , "jp");
-        City.create_city("Corfu" , "gr");
+        City.create_city("Corfu" , "src/gr");
         
     }
     //endregion
