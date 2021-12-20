@@ -143,7 +143,7 @@ public final class Utils
     public static void after_threads_died_routine()
     {
         Utils.sort_cities_by_distance();
-        Utils.setCities_by_day();
+        //Utils.setCities_by_day();
     }
     
     /**
