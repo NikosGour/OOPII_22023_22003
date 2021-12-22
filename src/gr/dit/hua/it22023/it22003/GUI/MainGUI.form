@@ -19,7 +19,7 @@
         <properties>
           <background color="-1118482"/>
           <editable value="false"/>
-          <font name="JetBrains Mono" size="18" style="0"/>
+          <font name="JetBrains Mono" size="22" style="0"/>
           <foreground color="-16777216"/>
         </properties>
       </component>
