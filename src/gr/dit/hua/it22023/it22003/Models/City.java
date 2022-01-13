@@ -14,7 +14,7 @@ public class City
     @JsonProperty("cityName")
     private String cityName;
     @JsonProperty("timeStamp")
-    private Date timeStamp;
+    private Date   timeStamp;
     /**
      * Marking System for Weights : Y = Young , M = Middle , E = Elder <br><hr>
      * index 0: Cafe                (Y M)<br>
@@ -46,6 +46,7 @@ public class City
      */
     @JsonProperty("normalized_features")
     private double[] normalized_features = new double[10];
+    private double   prefrences;
     
     //endregion
     
@@ -64,7 +65,9 @@ public class City
     
     //region Constructors
     public City()
-        {}
+    {
+    }
+    
     public City(String cityName , double[] features , double latitude , double longitude , Date timeStamp)
     {
         
@@ -130,22 +133,33 @@ public class City
     {
         this.normalized_features = normalized_features;
     }
+    
+    public double getPrefrences()
+    {
+        return prefrences;
+    }
+    
+    public void setPrefrences(double prefrences)
+    {
+        this.prefrences = prefrences;
+    }
     //endregion
     
     //region Methods
     
     /**
      * calls the api to create a city object
-     * @param city City name for api
+     *
+     * @param city    City name for api
      * @param country Country abbreviation for api
      * @throws IOException if city doesn't exist
      */
     public static City create_city(String city , String country) throws IOException
     {
-        if (!check_if_city_exists(city))
+        if (! check_if_city_exists(city))
         {
-        return OpenData.RetrieveData(city , country , Utils.APPID);
-        
+            return OpenData.RetrieveData(city , country , Utils.APPID);
+            
         }
         return null;
     }
@@ -171,10 +185,11 @@ public class City
     
     /**
      * If the city already exists in the arraylist, do not proceed with OpenData.RetrieveData(...) .
+     *
      * @param cityName the city name to check
      * @return true if city already exist , otherwise false
      */
-   
+    
     public static boolean check_if_city_exists(String cityName)
     {
         for (City city : Utils.cities)
