@@ -14,6 +14,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.Optional;
 
 public class PersonalizedSelector extends JFrame
 {
@@ -70,17 +71,19 @@ public class PersonalizedSelector extends JFrame
             
             Utils.cities.forEach(city -> {
                 double sum = 0;
-                for (int i = 0 ; i < preferences.length ; i++)
+                for (int i = 0; i < preferences.length; i++)
                 {
-                    sum+= preferences[i] * city.getFeatures()[i];
+                    sum += preferences[i] * city.getFeatures()[i];
                 }
                 city.setPrefrences(sum);
             });
+    
+    
+            Optional<City> val = Utils.cities.stream().max(Comparator.comparingDouble(City::getPrefrences));
             
-           
-
-            Utils.cities.stream()
-                    .max(Comparator.comparingDouble(City::getPrefrences));
+            main.recommendCitiesTextPane.setText(val.get().getCityName());
+            main.setVisible(true);
+            this.dispose();
         });
     }
     
