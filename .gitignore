@@ -3,3 +3,4 @@ out/production/OOPII_22023_22003/*
 *.iml
 cities.json
 out
+target/
