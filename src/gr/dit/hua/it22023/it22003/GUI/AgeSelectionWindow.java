@@ -23,9 +23,9 @@ public class AgeSelectionWindow extends JFrame
     
     private       JPanel      Main_Panel;
     private       JButton     confirmButton;
-    private       JLabel   ageLabel;
-    private       JSpinner ageSpinner;
-    private final MainGUI  main;
+    private       JLabel      ageLabel;
+    private       JSpinner    ageSpinner;
+    private final MainGUI     main;
     private final KeyListener keyListener = new KeyListener();
     
     public AgeSelectionWindow(String title , MainGUI main) throws HeadlessException
@@ -214,5 +214,6 @@ public class AgeSelectionWindow extends JFrame
     {
         return Main_Panel;
     }
+    
     //endregion
 }
