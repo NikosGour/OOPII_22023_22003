@@ -109,6 +109,7 @@ public class PersonalizedSelector extends JFrame
      */
     private void $$$setupUI$$$()
     {
+        
         Main_Panel = new JPanel();
         Main_Panel.setLayout(new GridLayoutManager(18 , 5 , new Insets(0 , 0 , 0 , 0) , - 1 , - 1));
         final Spacer spacer1 = new Spacer();
