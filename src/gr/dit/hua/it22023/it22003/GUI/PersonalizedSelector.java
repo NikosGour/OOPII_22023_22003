@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 
 public class PersonalizedSelector extends JFrame
 {
-    private MainGUI main;
+    private final MainGUI main;
     private JPanel  Main_Panel;
     
     public PersonalizedSelector(String title , MainGUI mainGUI)
