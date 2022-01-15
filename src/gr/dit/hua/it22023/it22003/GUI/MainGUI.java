@@ -1,9 +1,11 @@
 package gr.dit.hua.it22023.it22003.GUI;
 
 //region Imports
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import gr.dit.hua.it22023.it22003.Utils.Utils;
+
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.SimpleAttributeSet;
@@ -66,7 +68,7 @@ public class MainGUI extends JFrame
         //
         // recommendCitiesTextPane
         //
-        StyledDocument doc = recommendCitiesTextPane.getStyledDocument();
+        StyledDocument     doc    = recommendCitiesTextPane.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center , StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0 , doc.getLength() , center , false);
@@ -77,7 +79,7 @@ public class MainGUI extends JFrame
         menu.setMnemonic(KeyEvent.VK_M);
         menuBar.add(menu);
         
-        JMenuItem item_EnterNewAge = new JMenuItem("Age Selection");
+        JMenuItem item_EnterNewAge               = new JMenuItem("Age Selection");
         JMenuItem item_PersonaliseRecommendation = new JMenuItem("Personalize interests");
         
         item_EnterNewAge.addActionListener(e -> openAgeSelectionWindow());
@@ -140,11 +142,26 @@ public class MainGUI extends JFrame
         recommendCitiesTextPane = new JTextPane();
         recommendCitiesTextPane.setBackground(new Color(- 1118482));
         recommendCitiesTextPane.setEditable(false);
-        Font recommendCitiesTextPaneFont =
-                this.$$$getFont$$$("JetBrains Mono" , Font.PLAIN , 22 , recommendCitiesTextPane.getFont());
+        Font recommendCitiesTextPaneFont = this.$$$getFont$$$("JetBrains Mono" ,
+                                                              Font.PLAIN ,
+                                                              22 ,
+                                                              recommendCitiesTextPane.getFont());
         if (recommendCitiesTextPaneFont != null) recommendCitiesTextPane.setFont(recommendCitiesTextPaneFont);
         recommendCitiesTextPane.setForeground(new Color(- 16777216));
-        MainPanel.add(recommendCitiesTextPane , new GridConstraints(0 , 0 , 1 , 1 , GridConstraints.ANCHOR_NORTH , GridConstraints.FILL_HORIZONTAL , GridConstraints.SIZEPOLICY_WANT_GROW , GridConstraints.SIZEPOLICY_WANT_GROW , null , new Dimension(150 , 50) , null , 0 , false));
+        MainPanel.add(recommendCitiesTextPane ,
+                      new GridConstraints(0 ,
+                                          0 ,
+                                          1 ,
+                                          1 ,
+                                          GridConstraints.ANCHOR_NORTH ,
+                                          GridConstraints.FILL_HORIZONTAL ,
+                                          GridConstraints.SIZEPOLICY_WANT_GROW ,
+                                          GridConstraints.SIZEPOLICY_WANT_GROW ,
+                                          null ,
+                                          new Dimension(150 , 50) ,
+                                          null ,
+                                          0 ,
+                                          false));
     }
     
     /**
@@ -168,11 +185,17 @@ public class MainGUI extends JFrame
                 resultName = currentFont.getName();
             }
         }
-        Font font = new Font(resultName , style >= 0 ? style : currentFont.getStyle() , size >=
-                                                                                        0 ? size : currentFont.getSize());
-        boolean isMac = System.getProperty("os.name" , "").toLowerCase(Locale.ENGLISH).startsWith("mac");
-        Font fontWithFallback =
-                isMac ? new Font(font.getFamily() , font.getStyle() , font.getSize()) : new StyleContext().getFont(font.getFamily() , font.getStyle() , font.getSize());
+        Font font = new Font(resultName ,
+                             style >= 0 ? style : currentFont.getStyle() ,
+                             size >= 0 ? size : currentFont.getSize());
+        boolean isMac = System.getProperty("os.name" , "")
+                              .toLowerCase(Locale.ENGLISH)
+                              .startsWith("mac");
+        Font fontWithFallback = isMac ? new Font(font.getFamily() ,
+                                                 font.getStyle() ,
+                                                 font.getSize()) : new StyleContext().getFont(font.getFamily() ,
+                                                                                              font.getStyle() ,
+                                                                                              font.getSize());
         return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
     
