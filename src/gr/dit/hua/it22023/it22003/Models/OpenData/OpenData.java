@@ -56,7 +56,7 @@ public class OpenData
             features[i] = countCriterionCity(article , Utils.criteria[i]);
         }
 
-        Utils.logger.log(Level.INFO, "Retrieved data for " + city + ", " + country + " from OpenData.");
+        Utils.logger.log(Level.INFO, "Retrieved data for \"" + city + ", " + country + "\" from OpenData.");
     
         new City(city ,
                  features ,
