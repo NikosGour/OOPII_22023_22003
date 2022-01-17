@@ -12,6 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * A static class that contains miscellaneous methods and variables
@@ -27,6 +31,7 @@ public final class Utils
     public static final String[] criteria =
             { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
     public static final String APPID = "217d0917e9cae78fdb32d8e85bfa0e4b";
+    public static Logger logger;
     //endregion
     
     //region JSON
@@ -57,9 +62,11 @@ public final class Utils
     /**
      *  Sets the cities arraylist for perceptron city picking + initializes the cities_by_day HashMap
      */
-    public static void program_initialization()
-    {
+    public static void program_initialization() throws IOException {
+        initialize_Logger();
         initialize_weekdays();
+
+        Utils.logger.log(Level.INFO, "Program Initialization.");
         
         try
         {
@@ -242,6 +249,23 @@ public final class Utils
             dist = dist * 60 * 1.1515 * KILOMETER_MULT;
             return (dist);
         }
+    }
+
+
+    public static void initialize_Logger() throws IOException {
+        String file_name = "log.txt";
+
+        File file = new File(file_name);
+
+        //noinspection ResultOfMethodCallIgnored
+        file.createNewFile();
+
+        FileHandler fh = new FileHandler(file_name, true);
+
+        logger = Logger.getLogger(Utils.class.getName());
+        logger.addHandler(fh);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fh.setFormatter(formatter);
     }
     
     //endregion

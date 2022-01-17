@@ -9,6 +9,7 @@ import gr.dit.hua.it22023.it22003.Utils.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.logging.Level;
 
 /**
  * City description and weather information using OpenData with Jackson JSON processor.
@@ -54,7 +55,9 @@ public class OpenData
         {
             features[i] = countCriterionCity(article , Utils.criteria[i]);
         }
-    
+
+        Utils.logger.log(Level.INFO, "Retrieved data from OpenData.");
+
         return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon() , date);
     }
     
