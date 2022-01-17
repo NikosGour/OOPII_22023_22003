@@ -73,7 +73,7 @@ public class AgeSelectionWindow extends JFrame {
                   Perceptron perceptron;
                   try {
                         perceptron = Utils.assign_age_group(age);
-                        Utils.logger.log(Level.INFO, "Successfully entered age.");
+                        Utils.logger.log(Level.INFO, "Successfully entered age: " + age + ".");
                         GUIRecommend(perceptron);
                   } catch (IncorrectArgumentException ex) {
                         ex.printStackTrace();
@@ -106,7 +106,6 @@ public class AgeSelectionWindow extends JFrame {
 
 
       private void terminateMain() {
-            Utils.logger.log(Level.INFO, "Program termination.");
             main.close();
       }
 

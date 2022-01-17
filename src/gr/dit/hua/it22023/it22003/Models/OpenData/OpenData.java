@@ -56,7 +56,7 @@ public class OpenData
             features[i] = countCriterionCity(article , Utils.criteria[i]);
         }
 
-        Utils.logger.log(Level.INFO, "Retrieved data from OpenData.");
+        Utils.logger.log(Level.INFO, "Retrieved data for " + city + ", " + country + " from OpenData.");
 
         return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon() , date);
     }

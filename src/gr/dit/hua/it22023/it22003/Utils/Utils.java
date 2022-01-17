@@ -69,11 +69,11 @@ public final class Utils
         try
         {
             readJSON();
-            System.out.println("JSON read successfully");
+            Utils.logger.log(Level.INFO, "JSON read successfully.");
         } catch (IOException e)
         {
             async_dummy_data();
-            System.out.println("JSON read failed");
+            Utils.logger.log(Level.INFO, "JSON read failed.");
         }
         
     }

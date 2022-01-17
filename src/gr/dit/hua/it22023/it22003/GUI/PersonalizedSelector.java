@@ -15,6 +15,7 @@ import java.awt.event.WindowEvent;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.logging.Level;
 
 public class PersonalizedSelector extends JFrame
 {
@@ -81,6 +82,15 @@ public class PersonalizedSelector extends JFrame
                                      (double) stadium_spinner.getValue() ,
                                      (double) landmarks_spinner.getValue() ,
                                      (double) hotels_spinner.getValue() };
+
+            Utils.logger.log(Level.INFO, "Entered personalized preferences successfully.");
+            Utils.logger.log(Level.CONFIG, "Preferences for:    \n\tCafes: " + preferences[0] +
+                                                                                                                "\n\tSeas: " + preferences[1] +
+                                                                                                                "\n\tMuseums: " + preferences[2] +
+                                                                                                                "\n\tRestaurants: " + preferences[3] +
+                                                                                                                "\n\tStadiums: " + preferences[4] +
+                                                                                                                "\n\tLandmarks: " + preferences[5] +
+                                                                                                                "\n\tHotels: " + preferences[6]);
             
             // @formatter:off
             

@@ -18,6 +18,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.logging.Level;
 //endregion
 
 public class MainGUI extends JFrame {
@@ -50,6 +51,7 @@ public class MainGUI extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
+                    Utils.logger.log(Level.INFO, "Program termination.");
                     Utils.writeJSON();
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -90,11 +92,13 @@ public class MainGUI extends JFrame {
     }
 
     private void openAgeSelectionWindow() {
+        Utils.logger.log(Level.INFO, "Pressed \"Age Selection\" menu button.");
         new AgeSelectionWindow(this.getTitle(), this);
         this.setVisible(false);
     }
 
     private void openPersonalizedSelector() {
+        Utils.logger.log(Level.INFO, "Pressed \"Personalize interests\" menu button.");
         new PersonalizedSelector(this.getTitle(), this);
         this.setVisible(false);
     }
