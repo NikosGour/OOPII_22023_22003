@@ -19,19 +19,12 @@ import java.util.logging.Level;
 
 public class PersonalizedSelector extends JFrame
 {
-    private       JLabel     cafe;
     private       JSpinner   cafe_spinner;
-    private       JLabel     sea;
     private       JSpinner   sea_spinner;
-    private       JLabel     museum;
     private       JSpinner   museum_spinner;
-    private       JLabel     restaurant;
     private       JSpinner   restaurant_spinner;
-    private       JLabel     stadium;
     private       JSpinner   stadium_spinner;
-    private       JLabel     landmarks;
     private       JSpinner   landmarks_spinner;
-    private       JLabel     hotels;
     private       JSpinner   hotels_spinner;
     private final MainGUI    main;
     private       JPanel     Main_Panel;
@@ -84,13 +77,13 @@ public class PersonalizedSelector extends JFrame
                                      (double) hotels_spinner.getValue() };
 
             Utils.logger.log(Level.INFO, "Entered personalized preferences successfully.");
-            Utils.logger.log(Level.CONFIG, "Preferences for:    \n\tCafes: " + preferences[0] +
-                                                                                                                "\n\tSeas: " + preferences[1] +
-                                                                                                                "\n\tMuseums: " + preferences[2] +
-                                                                                                                "\n\tRestaurants: " + preferences[3] +
-                                                                                                                "\n\tStadiums: " + preferences[4] +
-                                                                                                                "\n\tLandmarks: " + preferences[5] +
-                                                                                                                "\n\tHotels: " + preferences[6]);
+            Utils.logger.log(Level.CONFIG, "\nPreferences for: \n\t\t* Cafes: " + preferences[0] +
+                                                                                                                "\n\t\t* Seas: " + preferences[1] +
+                                                                                                                "\n\t\t* Museums: " + preferences[2] +
+                                                                                                                "\n\t\t* Restaurants: " + preferences[3] +
+                                                                                                                "\n\t\t* Stadiums: " + preferences[4] +
+                                                                                                                "\n\t\t* Landmarks: " + preferences[5] +
+                                                                                                                "\n\t\t* Hotels: " + preferences[6]);
             
             // @formatter:off
             
@@ -168,11 +161,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        cafe = new JLabel();
+        JLabel cafe = new JLabel();
         Font cafeFont = this.$$$getFont$$$(null , - 1 , 14 , cafe.getFont());
         if (cafeFont != null) cafe.setFont(cafeFont);
-        cafe.setText("Label");
-        Main_Panel.add(cafe ,
+        cafe.setText("Cafes");
+        Main_Panel.add(cafe,
                        new GridConstraints(2 ,
                                            1 ,
                                            1 ,
@@ -216,11 +209,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        sea = new JLabel();
+        JLabel sea = new JLabel();
         Font seaFont = this.$$$getFont$$$(null , - 1 , 14 , sea.getFont());
         if (seaFont != null) sea.setFont(seaFont);
-        sea.setText("Label");
-        Main_Panel.add(sea ,
+        sea.setText("Seas");
+        Main_Panel.add(sea,
                        new GridConstraints(4 ,
                                            1 ,
                                            1 ,
@@ -249,11 +242,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        museum = new JLabel();
+        JLabel museum = new JLabel();
         Font museumFont = this.$$$getFont$$$(null , - 1 , 14 , museum.getFont());
         if (museumFont != null) museum.setFont(museumFont);
-        museum.setText("Label");
-        Main_Panel.add(museum ,
+        museum.setText("Museums");
+        Main_Panel.add(museum,
                        new GridConstraints(6 ,
                                            1 ,
                                            1 ,
@@ -267,11 +260,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        restaurant = new JLabel();
+        JLabel restaurant = new JLabel();
         Font restaurantFont = this.$$$getFont$$$(null , - 1 , 14 , restaurant.getFont());
         if (restaurantFont != null) restaurant.setFont(restaurantFont);
-        restaurant.setText("Label");
-        Main_Panel.add(restaurant ,
+        restaurant.setText("Restaurants");
+        Main_Panel.add(restaurant,
                        new GridConstraints(8 ,
                                            1 ,
                                            1 ,
@@ -285,11 +278,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        stadium = new JLabel();
+        JLabel stadium = new JLabel();
         Font stadiumFont = this.$$$getFont$$$(null , - 1 , 14 , stadium.getFont());
         if (stadiumFont != null) stadium.setFont(stadiumFont);
-        stadium.setText("Label");
-        Main_Panel.add(stadium ,
+        stadium.setText("Stadiums");
+        Main_Panel.add(stadium,
                        new GridConstraints(10 ,
                                            1 ,
                                            1 ,
@@ -303,11 +296,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        landmarks = new JLabel();
+        JLabel landmarks = new JLabel();
         Font landmarksFont = this.$$$getFont$$$(null , - 1 , 14 , landmarks.getFont());
         if (landmarksFont != null) landmarks.setFont(landmarksFont);
-        landmarks.setText("Label");
-        Main_Panel.add(landmarks ,
+        landmarks.setText("Landmarks");
+        Main_Panel.add(landmarks,
                        new GridConstraints(12 ,
                                            1 ,
                                            1 ,
@@ -321,11 +314,11 @@ public class PersonalizedSelector extends JFrame
                                            null ,
                                            0 ,
                                            false));
-        hotels = new JLabel();
+        JLabel hotels = new JLabel();
         Font hotelsFont = this.$$$getFont$$$(null , - 1 , 14 , hotels.getFont());
         if (hotelsFont != null) hotels.setFont(hotelsFont);
-        hotels.setText("Label");
-        Main_Panel.add(hotels ,
+        hotels.setText("Hotels");
+        Main_Panel.add(hotels,
                        new GridConstraints(14 ,
                                            1 ,
                                            1 ,

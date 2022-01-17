@@ -135,7 +135,7 @@ public class MainGUI extends JFrame {
         recommendCitiesTextPane = new JTextPane();
         recommendCitiesTextPane.setBackground(new Color(-1118482));
         recommendCitiesTextPane.setEditable(false);
-        Font recommendCitiesTextPaneFont = this.$$$getFont$$$("JetBrains Mono", Font.PLAIN, 22, recommendCitiesTextPane.getFont());
+        Font recommendCitiesTextPaneFont = this.$$$getFont$$$("JetBrains Mono", Font.PLAIN, 25, recommendCitiesTextPane.getFont());
         if (recommendCitiesTextPaneFont != null) recommendCitiesTextPane.setFont(recommendCitiesTextPaneFont);
         recommendCitiesTextPane.setForeground(new Color(-16777216));
         MainPanel.add(recommendCitiesTextPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
