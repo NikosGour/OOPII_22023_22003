@@ -46,7 +46,7 @@ public class City
      */
     @JsonProperty("normalized_features")
     private double[] normalized_features = new double[10];
-    private double   prefrences;
+    private double   preferences;
     
     //endregion
     
@@ -134,14 +134,14 @@ public class City
         this.normalized_features = normalized_features;
     }
     
-    public double getPrefrences()
+    public double getPreferences()
     {
-        return prefrences;
+        return preferences;
     }
     
-    public void setPrefrences(double prefrences)
+    public void setPreferences(double preferences)
     {
-        this.prefrences = prefrences;
+        this.preferences = preferences;
     }
     //endregion
     
@@ -154,14 +154,13 @@ public class City
      * @param country Country abbreviation for api
      * @throws IOException if city doesn't exist
      */
-    public static City create_city(String city , String country) throws IOException
+    public static void create_city(String city , String country) throws IOException
     {
         if (! check_if_city_exists(city))
         {
-            return OpenData.RetrieveData(city , country , Utils.APPID);
-            
+            OpenData.RetrieveData(city , country , Utils.APPID);
+    
         }
-        return null;
     }
     
     

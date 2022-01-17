@@ -23,11 +23,11 @@ public class OpenData
     
     /**
      * Retrieves weather information, geotag (lan, lon) and a Wikipedia article for a given city.
-     *  @param city    The Wikipedia article and OpenWeatherMap city.
+     * @param city    The Wikipedia article and OpenWeatherMap city.
      * @param country The country initials (i.e. gr, it, de).
      * @param appid   Your API key of the OpenWeatherMap.
      */
-    public static City RetrieveData(String city , String country , String appid) throws IOException
+    public static void RetrieveData(String city , String country , String appid) throws IOException
     {
         Date date = new Date();
         
@@ -57,8 +57,12 @@ public class OpenData
         }
 
         Utils.logger.log(Level.INFO, "Retrieved data for " + city + ", " + country + " from OpenData.");
-
-        return new City(city , features , weather_obj.getCoord().getLat() , weather_obj.getCoord().getLon() , date);
+    
+        new City(city ,
+                 features ,
+                 weather_obj.getCoord().getLat() ,
+                 weather_obj.getCoord().getLon() ,
+                 date);
     }
     
     /**

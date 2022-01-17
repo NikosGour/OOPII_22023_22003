@@ -23,7 +23,6 @@ public final class Utils
     public static ArrayList<Thread> threads = new ArrayList<>();
     public static HashMap<String, ArrayList<String>> cities_by_day = new HashMap<>();
     public static ArrayList<City> cities = new ArrayList<>();
-    public static final Scanner scan = new Scanner(System.in);
     public static final ObjectMapper JSON_mapper = new ObjectMapper();
     public static final String[] criteria =
             { "cafe" , "sea" , "museum" , "restaurant" , "stadium" , "landmark" , "hotel" };
@@ -168,6 +167,7 @@ public final class Utils
     /**
      * Maps the cities into cities_by_day HashMap
      */
+    @SuppressWarnings("unused")
     private static void setCities_by_day()
     {
         var simpleDateformat = new SimpleDateFormat("EEEE");

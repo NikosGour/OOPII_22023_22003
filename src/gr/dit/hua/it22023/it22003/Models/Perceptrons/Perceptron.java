@@ -23,8 +23,9 @@ public abstract class Perceptron implements PerceptronTraveller
     
     //region Methods
     /**
-     * @return  The closest city in the recomment list of the given perceptron , returns null if recommend list is empty
+     * @return  The closest city in the recommended list of the given perceptron , returns null if recommend list is empty
      */
+    @SuppressWarnings("unused")
     public static String closest_recommended(Perceptron perceptron)
     {
         if (perceptron.recommended_cities.size() == 0) return null;
@@ -67,14 +68,7 @@ public abstract class Perceptron implements PerceptronTraveller
         ArrayList<Map.Entry<City, Double>> sorting_list = new ArrayList<>(hashMap.entrySet());
         
         //Sort the list based on value
-        Collections.sort(sorting_list , new Comparator<Map.Entry<City, Double>>()
-        {
-            @Override
-            public int compare(Map.Entry<City, Double> o1 , Map.Entry<City, Double> o2)
-            {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-        });
+        sorting_list.sort(Map.Entry.comparingByValue());
         
         //Reverse the list, so most favorable location is on first index
         Collections.reverse(sorting_list);
@@ -108,6 +102,7 @@ public abstract class Perceptron implements PerceptronTraveller
      * @param isUpper a param to set the names to upper or not
      * @return same as recommend
      */
+    @SuppressWarnings("unused")
     public ArrayList<String> recommend(boolean isUpper)
     {
         ArrayList<String> return_value = this.recommend();
@@ -137,44 +132,9 @@ public abstract class Perceptron implements PerceptronTraveller
     
     //region Getters & Setters
     
-    public double[] getInputs()
-    {
-        return inputs;
-    }
-    
-    public void setInputs(double[] inputs)
-    {
-        this.inputs = inputs;
-    }
-    
-    public static double[] getWeights()
-    {
-        return weights;
-    }
-    
-    public static void setWeights(double[] weights)
-    {
-        Perceptron.weights = weights;
-    }
-    
-    public static double getWeightBias()
-    {
-        return weightBias;
-    }
-    
-    public static void setWeightBias(double weightBias)
-    {
-        Perceptron.weightBias = weightBias;
-    }
-    
     public ArrayList<City> getRecommended_cities()
     {
         return recommended_cities;
-    }
-    
-    public void setRecommended_cities(ArrayList<City> recommended_cities)
-    {
-        this.recommended_cities = recommended_cities;
     }
     
     //endregion

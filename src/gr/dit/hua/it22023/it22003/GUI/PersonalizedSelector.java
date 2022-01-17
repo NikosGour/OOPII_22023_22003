@@ -109,9 +109,9 @@ public class PersonalizedSelector extends JFrame
                                                     {
                                                         sum += preferences[i] * city.getFeatures()[i];
                                                     }
-                                                    city.setPrefrences(sum);
+                                                    city.setPreferences(sum);
                                                     })
-                                             .max(Comparator.comparingDouble(City::getPrefrences));
+                                             .max(Comparator.comparingDouble(City::getPreferences));
             // @formatter:on
             //noinspection OptionalGetWithoutIsPresent
             main.recommendCitiesTextPane.setText(val.get().getCityName());
