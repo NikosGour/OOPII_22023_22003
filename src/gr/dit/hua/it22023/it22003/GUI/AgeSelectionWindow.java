@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Level;
 
 public class AgeSelectionWindow extends JFrame {
 
@@ -72,6 +73,7 @@ public class AgeSelectionWindow extends JFrame {
                   Perceptron perceptron;
                   try {
                         perceptron = Utils.assign_age_group(age);
+                        Utils.logger.log(Level.INFO, "Successfully entered age.");
                         GUIRecommend(perceptron);
                   } catch (IncorrectArgumentException ex) {
                         ex.printStackTrace();
@@ -104,6 +106,7 @@ public class AgeSelectionWindow extends JFrame {
 
 
       private void terminateMain() {
+            Utils.logger.log(Level.INFO, "Program termination.");
             main.close();
       }
 

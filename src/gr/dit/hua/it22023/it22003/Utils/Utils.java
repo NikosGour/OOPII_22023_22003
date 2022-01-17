@@ -42,6 +42,7 @@ public final class Utils
     public static void writeJSON() throws IOException
     {
         JSON_mapper.writeValue(new File("cities.json") , cities);
+        Utils.logger.log(Level.INFO, "Saved JSON file.");
     }
     
     /**
