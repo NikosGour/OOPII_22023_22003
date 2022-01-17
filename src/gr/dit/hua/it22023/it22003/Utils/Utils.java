@@ -12,10 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 /**
  * A static class that contains miscellaneous methods and variables
@@ -262,11 +259,17 @@ public final class Utils
         file.createNewFile();
 
         FileHandler fh = new FileHandler(file_name, true);
+        ConsoleHandler ch = new ConsoleHandler();
+        
+        ch.setLevel(Level.ALL);
+        fh.setLevel(Level.ALL);
 
         logger = Logger.getLogger(Utils.class.getName());
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
         logger.addHandler(fh);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fh.setFormatter(formatter);
+        logger.addHandler(ch);
+        fh.setFormatter(new SimpleFormatter());
     }
     
     //endregion
