@@ -9,7 +9,14 @@
 - [x] Ερώτημα 1
 - [x] Ερώτημα 2
 - [x] Ερώτημα 3
-- [x] Ερώτημα 4
-- [x] Ερώτημα 5
-- [x] Ερώτημα 6
+
   
+
+### Quick Start
+```shell
+#compilation
+javac -sourcepath src/ -cp JARs/*: src/*.java -d out/production/TravelAdvisorDIT22023_22003/
+
+#execution
+java -cp out/production/TravelAdvisorDIT22023_22003/:JARs/* Controller
+```
