@@ -204,10 +204,7 @@ public final class Utils
     {
         for (Thread thread : Utils.threads)
             {
-                if (thread.isAlive())
-                {
-                    Thread.sleep(500);
-                }
+                thread.join();
             }
     }
     
